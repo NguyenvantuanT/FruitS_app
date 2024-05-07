@@ -1,5 +1,7 @@
 // import 'dart:io';
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_text_stytle.dart';
@@ -45,13 +47,13 @@ class _FruitDetailState extends State<FruitDetail> {
                     bottomRight: Radius.circular(15),
                   ),
                   child: 
-                  // widget.fruit.img != null
-                  //     ? Image.file(File(widget.fruit.img ?? "") ,fit: BoxFit.cover,)
-                  //     : null ,
-                  Image.asset(
-                          widget.fruit.img ?? "",
-                          fit: BoxFit.cover,
-                        ),
+                  widget.fruit.img != null
+                      ? Image.file(File(widget.fruit.img ?? "") ,fit: BoxFit.cover,)
+                      : null ,
+                  // Image.asset(
+                  //         widget.fruit.img ?? "",
+                  //         fit: BoxFit.cover,
+                  //       ),
                 ),
               ),
             ),

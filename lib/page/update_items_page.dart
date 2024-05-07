@@ -1,7 +1,7 @@
-import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'dart:io';
+
+import 'package:hive/hive.dart';
+
 
 import 'package:flutter/material.dart';
 import 'package:nectar/models/fruit_model.dart';
@@ -15,23 +15,15 @@ class UpdateItemsPage extends StatefulWidget {
 }
 
 class _UpdateItemsPageState extends State<UpdateItemsPage> {
-
-  @override
+   @override
   void initState() {
     super.initState();
-    loadData();
+    getFruitsFromHive();
   }
 
-  Future<void> loadData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final List<String>? encodedDataList = prefs.getStringList("data");
-    if (encodedDataList != null) {
-      setState(() {
-        fruits = encodedDataList
-            .map((data) => FruitModel.fromJson(json.decode(data)))
-            .toList();
-      });
-    }
+  Future<List<FruitModel>> getFruitsFromHive() async {
+    final box = await Hive.openBox<FruitModel>('newFruits');
+    return box.values.toList();
   }
 
   @override
@@ -53,8 +45,8 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
               ),
             ),
             child: ListTile(
-              leading: fruit.img != null ? Image.file(File(fruit.img ?? "")) : null,
-              title: Text(fruit.name ?? ''),
+              leading: Image.file(File(fruit.img ?? "")),  
+              title: Text(fruit.name ?? ''),  
               subtitle: Text('Price: ${fruit.price}'),
             ),
           );

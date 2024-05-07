@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:nectar/components/app_text_stytle.dart';
@@ -24,11 +23,10 @@ class AppCartDetail extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         children: [
-        Image.file(File(cartFruits.img ?? "") , width: 100,),
-          // Image.asset(
-          //   cartFruits.img ?? "",
-          //   width: 100,
-          // ),
+          Image.asset(
+            cartFruits.img ?? "",
+            width: 100,
+          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
