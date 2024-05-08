@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:nectar/components/app_text_stytle.dart';
 import 'package:nectar/models/fruit_model.dart';
@@ -56,8 +55,7 @@ class AppCartDetail extends StatelessWidget {
                 Row(
                   children: [
                     IconButton(
-                        onPressed: 
-                        onRemove, icon: const Icon(Icons.remove)),
+                        onPressed: onRemove, icon: const Icon(Icons.remove)),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 15)
                           .copyWith(top: 7, bottom: 10),
@@ -77,7 +75,7 @@ class AppCartDetail extends StatelessWidget {
                           Icons.add,
                           color: pyColor,
                         )),
-                    const Spacer(),
+                    const  SizedBox(width: 40),
                     AppTextStyle(
                         text: '\$ ${cartFruits.price ?? "0.0"}',
                         fontSize: 18,

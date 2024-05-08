@@ -17,36 +17,13 @@ class FruitModel {
     this.quantity,
   });
 
-  Map<String, dynamic> toJson() {
-    return {
-      "id": id,
-      "name": name,
-      "price": price,
-      "description": description,
-      "fs": fs,
-      "img": img,
-      "quantity": quantity,
-    };
-  }
-
-  factory FruitModel.fromJson(Map<String, dynamic> json) {
-    return FruitModel(
-      id: json['id'],
-      name: json['name'],
-      price: json['price'],
-      description: json['description'],
-      fs: json['fs'],
-      img: json['img'],
-      quantity: json['quantity'],
-    );
-  }
-
   double get total => (price ?? 0.0) * (quantity ?? 0);
 }
 
-List<FruitModel> newFruits = [];
+
 
 List<FruitModel> cartFruits = [];
+List<FruitModel> favourites = [];
 
 List<FruitModel> fruits = [
   FruitModel()

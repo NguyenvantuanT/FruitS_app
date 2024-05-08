@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nectar/page/cart_page.dart';
+import 'package:nectar/page/favourite_page.dart';
 import 'package:nectar/page/home_page.dart';
-import 'package:nectar/page/add_item_page.dart';
 import 'package:nectar/page/update_items_page.dart';
 
 class RootPage extends StatefulWidget {
@@ -23,7 +23,7 @@ class _RootPageState extends State<RootPage> {
         children:const [
           HomePage(),
           CartPage(),
-          AddItemPage(),
+          FavouritePages(),
           UpdateItemsPage(),
         ],
       ),
@@ -51,7 +51,7 @@ class _RootPageState extends State<RootPage> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.account_circle_outlined),
-              label: "Favourite",
+              label: "Account",
             )
           ]),
     );

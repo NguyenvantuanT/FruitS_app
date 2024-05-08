@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_text_filder.dart';
@@ -21,27 +20,22 @@ class _AddItemPageState extends State<AddItemPage> {
   final ImagePicker _picker = ImagePicker();
 
   void addNewFruit() async {
+
     final XFile? pickedImage = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       FruitModel newFruit = FruitModel(
-        id: newFruits.length + 1,
+        id: fruits.length + 1,
         name: nameController.text.trim(),
         price: double.parse(priceController.text),
         description: descriptionController.text.trim(),
         fs: 'Fresh',
-        img: pickedImage.path,
+        img: "assets/images/food_2.png",
         quantity: 0,
       );
-      newFruits.add(newFruit);
-      await saveFruitsToHive(newFruits);
+      fruits.add(newFruit);
     }
   }
-
-  Future<void> saveFruitsToHive(List<FruitModel> fruits) async {
-    final box = await Hive.openBox<FruitModel>('newFruits');
-    await box.addAll(fruits);
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +71,8 @@ class _AddItemPageState extends State<AddItemPage> {
                   nameController.clear();
                   priceController.clear();
                   descriptionController.clear();
-                  Route route = MaterialPageRoute(builder: (context) => const UpdateItemsPage());
+                  Route route = MaterialPageRoute(
+                      builder: (context) => const UpdateItemsPage());
                   Navigator.push(context, route);
                 },
               ),

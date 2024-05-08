@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_text_filder.dart';
 import 'package:nectar/components/app_text_stytle.dart';
-import 'package:nectar/page/admin_page.dart';
 import 'package:nectar/page/sign_up_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -92,10 +91,10 @@ class _LoginPageState extends State<LoginPage> {
                     AppButton(
                         text: "Log In",
                         onTap: () {
-                          Route newRoute = MaterialPageRoute(
-                              builder: (context) => const AdminPage());
-                          Navigator.pushAndRemoveUntil(
-                              context, newRoute, (route) => false);
+                          // Route newRoute = MaterialPageRoute(
+                          //     builder: (context) => const AdminPage());
+                          // Navigator.pushAndRemoveUntil(
+                          //     context, newRoute, (route) => false);
                         }),
                     const SizedBox(height: 10),
                     Row(
