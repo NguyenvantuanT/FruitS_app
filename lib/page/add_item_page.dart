@@ -3,6 +3,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_text_filder.dart';
 import 'package:nectar/models/fruit_model.dart';
+import 'package:nectar/page/admin_user_page.dart';
 import 'package:nectar/page/update_items_page.dart';
 import 'package:nectar/themes/colors.dart';
 
@@ -20,8 +21,8 @@ class _AddItemPageState extends State<AddItemPage> {
   final ImagePicker _picker = ImagePicker();
 
   void addNewFruit() async {
-
-    final XFile? pickedImage = await _picker.pickImage(source: ImageSource.gallery);
+    final XFile? pickedImage =
+        await _picker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       FruitModel newFruit = FruitModel(
         id: fruits.length + 1,
@@ -35,12 +36,22 @@ class _AddItemPageState extends State<AddItemPage> {
       fruits.add(newFruit);
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Fruit'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Route route = MaterialPageRoute(
+                    builder: (context) => const  AdminUserPage());
+                Navigator.push(context, route);
+              },
+              icon: const Icon(Icons.logout))
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),

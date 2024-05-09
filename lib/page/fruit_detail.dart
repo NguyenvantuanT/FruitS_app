@@ -14,28 +14,58 @@ class FruitDetail extends StatefulWidget {
 class _FruitDetailState extends State<FruitDetail> {
   @override
   Widget build(BuildContext context) {
+    final Fruit = widget.fruit;
+
+    void addToFavourite() {
+      setState(() {
+        Fruit.isFavourite = !Fruit.isFavourite;
+
+        if (Fruit.isFavourite) {
+          favourites.add(Fruit);
+        } else {
+          favourites.removeWhere((element) => element.id == Fruit.id);
+        }
+      });
+    }
+
+    void addToCart() {
+      setState(() {
+        Fruit.isCart = !Fruit.isCart;
+        if (Fruit.isCart) {
+          if ((Fruit.quantity ?? 0) > 0 &&
+              !cartFruits.any((element) => element.id == Fruit.id)) {
+            cartFruits.add(Fruit);
+          } else {
+            var fruit = cartFruits.firstWhere(
+              (element) => element.id == Fruit.id);
+            if (fruit != null) {
+             fruit.quantity = (Fruit.quantity ?? 0) + (Fruit.quantity ?? 0);
+
+            }
+          }
+          Navigator.pop(context);
+        }
+      });
+    }
+
     return Scaffold(
         backgroundColor: Colors.white,
         body: AppFruitDetail(
-          fruit: widget.fruit,
+          fruit: Fruit,
           onAdd: () {
             setState(
-              () => widget.fruit.quantity = (widget.fruit.quantity ?? 0) + 1,
+              () => Fruit.quantity = (Fruit.quantity ?? 0) + 1,
             );
           },
           onRemove: () {
-            widget.fruit.quantity == 1
+            Fruit.quantity == 1
                 ? null
                 : setState(
-                    () => widget.fruit.quantity =
-                        (widget.fruit.quantity ?? 0) - 1,
+                    () => Fruit.quantity = (Fruit.quantity ?? 0) - 1,
                   );
           },
-          onfavorite: () => favourites.add(widget.fruit),
-          onTap: () {
-            Navigator.pop(context);
-            cartFruits.add(widget.fruit);
-          },
+          onfavorite: addToFavourite,
+          onTap: addToCart,
         ));
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:nectar/page/account_page.dart';
 import 'package:nectar/page/cart_page.dart';
 import 'package:nectar/page/favourite_page.dart';
 import 'package:nectar/page/home_page.dart';
-import 'package:nectar/page/update_items_page.dart';
+import 'package:nectar/themes/colors.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({super.key});
@@ -20,14 +21,15 @@ class _RootPageState extends State<RootPage> {
     return Scaffold(
       body: PageView(
         controller: _pageController,
-        children:const [
+        children: const [
           HomePage(),
           CartPage(),
           FavouritePages(),
-          UpdateItemsPage(),
+          AccountPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+          fixedColor: pyColor,
           type: BottomNavigationBarType.fixed,
           currentIndex: selectIndex,
           onTap: (int index) {

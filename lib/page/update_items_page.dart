@@ -31,6 +31,10 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
               leading: Image.asset(fruit.img ?? ''),
               title: Text(fruit.name ?? ''),
               subtitle: Text('Price: ${fruit.price}'),
+              trailing: IconButton(
+                  onPressed: () => setState(() =>
+                      fruits.removeWhere((element) => element.id == fruit.id)),
+                  icon: const Icon(Icons.delete)),
             ),
             onTap: () {
               showDialog(
@@ -56,9 +60,9 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
                                 labelText: 'Description',
                                 textInputAction: TextInputAction.done,
                               ),
-                               AppTextField2(
+                              AppTextField2(
                                 controller: newfsController,
-                                labelText: 'Description',
+                                labelText: 'fs',
                                 textInputAction: TextInputAction.done,
                               ),
                               Row(
@@ -66,18 +70,27 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
                                 children: [
                                   TextButton(
                                       onPressed: () {
-                                        fruits[index] = FruitModel(
+                                        FruitModel updateFruit = FruitModel(
+                                          name: newNameController.text.trim(),
+                                           img: fruit.img != null ? fruit.img : "assets/images/food_2.png",
+                                          price: double.parse(newPriceController.text),
                                           fs: newfsController.text.trim(),
-                                          quantity: 0,
-                                            img: fruit.img != null
-                                                ? fruit.img
-                                                : "assets/images/food_2.png",
-                                            name: newNameController.text.trim(),
-                                            price: double.parse(
-                                                newPriceController.text),
-                                            description:
-                                                newDescriptionController.text
-                                                    .trim());
+                                          description: newDescriptionController.text.trim(),
+                                          quantity: fruit.quantity,
+                                        );
+
+                                        fruits[index] = updateFruit ;
+
+                                        favourites.removeWhere((element) => element.id == fruit.id );
+                                        if(fruit.isFavourite == true){
+                                            favourites.add(updateFruit);
+                                        }
+
+                                        cartFruits.removeWhere((element) => element.id == fruit.id );
+                                        if(fruit.isCart == true){
+                                            cartFruits.add(updateFruit);
+                                        }
+
                                         setState(() {});
                                         newNameController.clear();
                                         newDescriptionController.clear();

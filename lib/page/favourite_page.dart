@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_favoure_item.dart';
 import 'package:nectar/models/fruit_model.dart';
+import 'package:nectar/page/cart_page.dart';
 
 class FavouritePages extends StatefulWidget {
   const FavouritePages({super.key});
@@ -44,11 +45,18 @@ class _FavouritePagesState extends State<FavouritePages> {
                 itemCount: favourites.length,
               ),
             ),
-             FractionallySizedBox(
-                widthFactor: 0.9, child: AppButton(text: 'Add All To Cart' , onTap: () {
-                  Navigator.pop(context);
-                  cartFruits.addAll(favourites);
-                },) ),
+            FractionallySizedBox(
+                widthFactor: 0.9,
+                child: AppButton(
+                  text: 'Add All To Cart',
+                  onTap: () {
+                    cartFruits.addAll(favourites);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const CartPage()),
+                    );
+                  },
+                )),
           ],
         ),
       ),

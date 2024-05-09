@@ -6,6 +6,8 @@ class FruitModel {
   String? fs;
   String? img;
   int? quantity;
+  bool isFavourite;
+  bool isCart;
 
   FruitModel({
     this.id,
@@ -15,11 +17,12 @@ class FruitModel {
     this.fs,
     this.img,
     this.quantity,
+    this.isFavourite = false,
+    this.isCart = false,
   });
 
   double get total => (price ?? 0.0) * (quantity ?? 0);
 }
-
 
 
 List<FruitModel> cartFruits = [];
