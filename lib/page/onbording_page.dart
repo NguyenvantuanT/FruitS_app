@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nectar/components/app_button.dart';
 import 'package:nectar/page/admin_user_page.dart';
+import 'package:nectar/themes/colors.dart';
 
 class OnbordingPage extends StatefulWidget {
   const OnbordingPage({super.key});
@@ -49,6 +50,8 @@ class _OnbordingPageState extends State<OnbordingPage> {
                       widthFactor: 0.9,
                       child: AppButton(
                         text: 'Get Started',
+                        bgColor: pyColor,
+                        boderColor: pyColor,
                         onTap: () {
                           Navigator.pushAndRemoveUntil(
                               context,

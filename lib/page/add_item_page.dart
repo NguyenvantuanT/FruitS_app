@@ -47,7 +47,7 @@ class _AddItemPageState extends State<AddItemPage> {
           IconButton(
               onPressed: () {
                 Route route = MaterialPageRoute(
-                    builder: (context) => const  AdminUserPage());
+                    builder: (context) => const AdminUserPage());
                 Navigator.push(context, route);
               },
               icon: const Icon(Icons.logout))
@@ -78,6 +78,8 @@ class _AddItemPageState extends State<AddItemPage> {
               const SizedBox(height: 40),
               AppButton(
                 text: "Add Fruit",
+                bgColor: pyColor,
+                boderColor: pyColor,
                 onTap: () async {
                   nameController.clear();
                   priceController.clear();

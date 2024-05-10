@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nectar/themes/colors.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({
@@ -7,11 +6,18 @@ class AppButton extends StatelessWidget {
     required this.text,
     this.onTap,
     this.height = 55.0,
+    this.bgColor = Colors.black,
+    this.textColor = Colors.white,
+    this.boderColor = Colors.white,
   });
 
   final String text;
   final Function()? onTap;
   final double height;
+  final Color bgColor;
+  final Color textColor;
+  final Color boderColor;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -20,11 +26,12 @@ class AppButton extends StatelessWidget {
           height: height,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-              color: pyColor,
+              color: bgColor,
+              border: Border.all(color: boderColor),
               borderRadius: const BorderRadius.all(Radius.circular(15))),
           child: Text(
             text,
-            style: const TextStyle(color: Colors.white, fontSize: 17),
+            style: TextStyle(color: textColor, fontSize: 17),
           )),
     );
   }

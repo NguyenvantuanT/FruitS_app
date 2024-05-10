@@ -17,7 +17,7 @@ class AppRow extends StatelessWidget {
               Text(text , style: const TextStyle(color: Colors.grey , fontSize: 18),),
               const  Spacer(),
               Text(text2 , style:const TextStyle(fontSize: 18),),
-              IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_forward_ios , size: 20,))
+              IconButton(onPressed: (){}, icon: const Icon(Icons.chevron_right , size: 20,))
             ],
           ),
           Divider(

@@ -3,6 +3,7 @@ import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_favoure_item.dart';
 import 'package:nectar/models/fruit_model.dart';
 import 'package:nectar/page/cart_page.dart';
+import 'package:nectar/themes/colors.dart';
 
 class FavouritePages extends StatefulWidget {
   const FavouritePages({super.key});
@@ -49,6 +50,8 @@ class _FavouritePagesState extends State<FavouritePages> {
                 widthFactor: 0.9,
                 child: AppButton(
                   text: 'Add All To Cart',
+                  bgColor: pyColor,
+                  boderColor: pyColor,
                   onTap: () {
                     cartFruits.addAll(favourites);
                     Navigator.push(

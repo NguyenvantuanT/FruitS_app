@@ -133,6 +133,8 @@ class AppFruitDetail extends StatelessWidget {
                   const Spacer(),
                   AppButton(
                     text: "Add To Basket",
+                    bgColor: pyColor,
+                    boderColor: pyColor,
                     height: 60,
                     onTap: onTap,
                   )

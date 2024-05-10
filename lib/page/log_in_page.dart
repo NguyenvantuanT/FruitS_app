@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_text_filder.dart';
 import 'package:nectar/components/app_text_stytle.dart';
+import 'package:nectar/models/auth_model.dart';
 import 'package:nectar/page/admin_page.dart';
 import 'package:nectar/page/sign_up_page.dart';
+import 'package:nectar/themes/colors.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, this.email});
@@ -15,17 +17,40 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
   bool obscureText = true;
+
+  void checkUser() {
+    final email = emailController.text;
+    final pass = passwordController.text;
+
+    final user = persons.firstWhere(
+        (element) => element.email == email && element.pass == pass);
+
+    if (user != null) {
+      setState(() {
+        user.isLogin = true;
+      });
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => AdminPage()));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Sai email hoặc pass'),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController emailController = widget.email != null
-        ? TextEditingController(text: widget.email)
-        : TextEditingController();
-
+    // final TextEditingController emailController = widget.email != null
+    //     ? TextEditingController(text: widget.email)
+    //     : TextEditingController();
+    // final TextEditingController passwordController = TextEditingController();
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -91,14 +116,9 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(height: 40),
                     AppButton(
                         text: "Log In",
-                        onTap: () {
-                          Route route = MaterialPageRoute(
-                              builder: (context) => const AdminPage());
-                          Navigator.push(context, route);
-
-                          // Navigator.pushAndRemoveUntil(
-                          //     context, newRoute, (route) => false);
-                        }),
+                        bgColor: pyColor,
+                        boderColor: pyColor,
+                        onTap: checkUser),
                     const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -118,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                                 (route) => false);
                           },
                           child: const AppTextStyle(
-                            text: "Singup",
+                            text: "Signup",
                             fontSize: 14,
                             fontWeight: FontWeight.normal,
                             textColor: Color(0XFF53B175),

@@ -40,7 +40,6 @@ class _FruitDetailState extends State<FruitDetail> {
               (element) => element.id == Fruit.id);
             if (fruit != null) {
              fruit.quantity = (Fruit.quantity ?? 0) + (Fruit.quantity ?? 0);
-
             }
           }
           Navigator.pop(context);

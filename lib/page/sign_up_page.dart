@@ -3,6 +3,7 @@ import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_text_filder.dart';
 import 'package:nectar/components/app_text_stytle.dart';
 import 'package:nectar/page/log_in_page.dart';
+import 'package:nectar/themes/colors.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -98,8 +99,13 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       const SizedBox(height: 30),
                       AppButton(
-                        text: "Sing Up",
+                        text: "Sign Up",
+                        bgColor: pyColor,
+                        boderColor: pyColor,
                         onTap: () {
+
+                          
+
                           Route newRoute = MaterialPageRoute(
                               builder: (context) =>
                                   LoginPage(email: emailController.text));
@@ -119,10 +125,16 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage(email: emailController.text,)), (route) => false);
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginPage(
+                                            email: emailController.text,
+                                          )),
+                                  (route) => false);
                             },
                             child: const AppTextStyle(
-                              text: "Singup",
+                              text: "Sign up",
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
                               textColor: Color(0XFF53B175),

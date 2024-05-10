@@ -5,6 +5,7 @@ import 'package:nectar/components/app_row.dart';
 import 'package:nectar/components/app_text_stytle.dart';
 import 'package:nectar/models/fruit_model.dart';
 import 'package:nectar/page/order_accect.dart';
+import 'package:nectar/themes/colors.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -77,6 +78,8 @@ class _CartPageState extends State<CartPage> {
                 widthFactor: 0.9,
                 child: AppButton(
                   text: "Go To Checkout",
+                  bgColor: pyColor,
+                  boderColor: pyColor,
                   onTap: () {
                     showModalBottomSheet(
                         elevation: 0.9,
@@ -121,6 +124,8 @@ class _CartPageState extends State<CartPage> {
                                   widthFactor: 0.7,
                                   child: AppButton(
                                     text: "Place Order",
+                                    bgColor: pyColor,
+                                    boderColor: pyColor,
                                     onTap: () {
                                       cartFruits.clear();
                                       Navigator.pushAndRemoveUntil(
