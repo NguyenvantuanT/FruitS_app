@@ -32,25 +32,13 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         user.isLogin = true;
       });
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AdminPage()));
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Sai email hoặc pass'),
-        ),
-      );
-    }
+      Navigator.pushAndRemoveUntil(context,  MaterialPageRoute(builder: (context) => const AdminPage()), (route) => false);
+    } 
   }
 
   @override
   Widget build(BuildContext context) {
-    // final TextEditingController emailController = widget.email != null
-    //     ? TextEditingController(text: widget.email)
-    //     : TextEditingController();
-    // final TextEditingController passwordController = TextEditingController();
     Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       body: Stack(
         children: [

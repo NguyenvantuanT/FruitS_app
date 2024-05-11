@@ -32,16 +32,7 @@ class _FruitDetailState extends State<FruitDetail> {
       setState(() {
         Fruit.isCart = !Fruit.isCart;
         if (Fruit.isCart) {
-          if ((Fruit.quantity ?? 0) > 0 &&
-              !cartFruits.any((element) => element.id == Fruit.id)) {
-            cartFruits.add(Fruit);
-          } else {
-            var fruit = cartFruits.firstWhere(
-              (element) => element.id == Fruit.id);
-            if (fruit != null) {
-             fruit.quantity = (Fruit.quantity ?? 0) + (Fruit.quantity ?? 0);
-            }
-          }
+          cartFruits.add(Fruit);
           Navigator.pop(context);
         }
       });

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nectar/page/account_page.dart';
 import 'package:nectar/page/add_item_page.dart';
 import 'package:nectar/page/update_items_page.dart';
+import 'package:nectar/themes/colors.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({super.key});
@@ -16,7 +17,7 @@ class _AdminPageState extends State<AdminPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: PageView(
+      body: PageView(
         controller: _pageController,
         children: const [
           AddItemPage(),
@@ -25,14 +26,17 @@ class _AdminPageState extends State<AdminPage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: (int index) {
-          setState(() {
-            selectIndex = index;
-             _pageController.jumpToPage(selectIndex);
-          });
-        },
-        items:const [
-           BottomNavigationBarItem(
+          fixedColor: pyColor,
+          type: BottomNavigationBarType.fixed,
+          currentIndex: selectIndex,
+          onTap: (int index) {
+            setState(() {
+              selectIndex = index;
+              _pageController.jumpToPage(selectIndex);
+            });
+          },
+          items: const [
+            BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
               label: "New Item",
             ),
@@ -44,7 +48,7 @@ class _AdminPageState extends State<AdminPage> {
               icon: Icon(Icons.account_circle_outlined),
               label: "Account",
             ),
-        ]),
+          ]),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_text_stytle.dart';
+import 'package:nectar/models/auth_model.dart';
 import 'package:nectar/page/admin_user_page.dart';
 import 'package:nectar/themes/colors.dart';
 
@@ -11,13 +12,8 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
-
-  //  bool check() {
-  //   late bool isCheck ;
-  //   (persons.any((element) => element.isLogin == true)) ? isCheck = true :  isCheck = false ;
-  //   return isCheck;
-  //  }
+    bool check = persons.any((element) => element.isLogin = true);
+    AuthModel user = persons.firstWhere((element) => element.isLogin == check);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -34,16 +30,15 @@ class AccountPage extends StatelessWidget {
                   child: Image.asset("assets/images/food_1.png"),
                 ),
                 SizedBox(width: 20),
-                const  Column(
+                Column(
                   children: [
                     AppTextStyle(
-                      text: "adda",
+                      text: check ? user.name ?? "" : "adadd",
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
                     ),
                     AppTextStyle(
-                       text: 
-                          'Email@gmail.com',
+                      text: check ? user.email ?? "" : 'Email@gmail.com',
                       fontSize: 17,
                       fontWeight: FontWeight.normal,
                       textColor: Colors.black26,
@@ -82,7 +77,7 @@ class AccountPage extends StatelessWidget {
               textColor: pyColor,
               boderColor: pyColor,
               onTap: () {
-                // user.isLogin = false;
+                user.isLogin = false;
                 Route route = MaterialPageRoute(
                     builder: (context) => const AdminUserPage());
                 Navigator.push(context, route);

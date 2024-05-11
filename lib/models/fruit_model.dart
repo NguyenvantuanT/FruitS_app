@@ -66,7 +66,7 @@ List<FruitModel> fruits = [
     ..img = "assets/images/food_4.png"
     ..quantity = 0,
   FruitModel()
-    ..id = 1
+    ..id = 5
     ..name = "Organic Bananas"
     ..price = 4.99
     ..description =
@@ -75,7 +75,7 @@ List<FruitModel> fruits = [
     ..img = "assets/images/food_1.png"
     ..quantity = 0,
   FruitModel()
-    ..id = 2
+    ..id = 6
     ..name = "Red Apple"
     ..price = 4.99
     ..description =
@@ -84,7 +84,7 @@ List<FruitModel> fruits = [
     ..img = "assets/images/food_2.png"
     ..quantity = 0,
   FruitModel()
-    ..id = 3
+    ..id = 7
     ..name = "Bell Pepper Red"
     ..price = 4.99
     ..description =

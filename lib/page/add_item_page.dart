@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nectar/components/app_button.dart';
+import 'package:nectar/components/app_tab_bar.dart';
 import 'package:nectar/components/app_text_filder.dart';
+import 'package:nectar/components/app_text_stytle.dart';
 import 'package:nectar/models/fruit_model.dart';
-import 'package:nectar/page/admin_user_page.dart';
-import 'package:nectar/page/update_items_page.dart';
 import 'package:nectar/themes/colors.dart';
 
 class AddItemPage extends StatefulWidget {
@@ -40,18 +40,10 @@ class _AddItemPageState extends State<AddItemPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Add Fruit'),
-        centerTitle: true,
-        actions: [
-          IconButton(
-              onPressed: () {
-                Route route = MaterialPageRoute(
-                    builder: (context) => const AdminUserPage());
-                Navigator.push(context, route);
-              },
-              icon: const Icon(Icons.logout))
-        ],
+      backgroundColor: Colors.white,
+      appBar: const AppTabBar(
+        text: "Dhaka, Banassre",
+        color: Colors.white,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -60,6 +52,12 @@ class _AddItemPageState extends State<AddItemPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Divider(
+                color: Colors.grey,
+                height: 1.2,
+              ),
+              const SizedBox(height: 15),
+              const AppTextStyle(text: "Add new fruit"),
               AppTextField2(
                 controller: nameController,
                 labelText: 'Name',
@@ -84,9 +82,6 @@ class _AddItemPageState extends State<AddItemPage> {
                   nameController.clear();
                   priceController.clear();
                   descriptionController.clear();
-                  Route route = MaterialPageRoute(
-                      builder: (context) => const UpdateItemsPage());
-                  Navigator.push(context, route);
                 },
               ),
             ],
