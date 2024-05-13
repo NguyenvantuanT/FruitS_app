@@ -3,6 +3,7 @@ import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_text_stytle.dart';
 import 'package:nectar/models/auth_model.dart';
 import 'package:nectar/page/admin_user_page.dart';
+import 'package:nectar/page/change_password_page.dart';
 import 'package:nectar/themes/colors.dart';
 
 class AccountPage extends StatelessWidget {
@@ -12,7 +13,7 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool check = persons.any((element) => element.isLogin = true);
+    bool check = persons.any((element) => element.isLogin == true);
     AuthModel user = persons.firstWhere((element) => element.isLogin == check);
 
     return Scaffold(
@@ -20,7 +21,7 @@ class AccountPage extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0).copyWith(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0).copyWith(
                 top: MediaQuery.of(context).padding.top + 20, bottom: 25),
             child: Row(
               children: [
@@ -29,11 +30,11 @@ class AccountPage extends StatelessWidget {
                   backgroundColor: pyColor,
                   child: Image.asset("assets/images/food_1.png"),
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Column(
                   children: [
                     AppTextStyle(
-                      text: check ? user.name ?? "" : "adadd",
+                      text: check ? user.name ?? "" : "Username",
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
                     ),
@@ -52,17 +53,20 @@ class AccountPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0)
                 .copyWith(top: 10, bottom: 10),
-            child: const Row(
+            child: Row(
               children: [
-                Icon(Icons.password_outlined),
-                SizedBox(width: 20),
-                AppTextStyle(
+                const Icon(Icons.password_outlined),
+                const SizedBox(width: 20),
+                const AppTextStyle(
                   text: "Change Password",
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                 ),
-                Spacer(),
-                Icon(Icons.chevron_right),
+                const Spacer(),
+                IconButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>const ChangePasswordPage()));
+                    }, icon: const Icon(Icons.chevron_right)),
               ],
             ),
           ),

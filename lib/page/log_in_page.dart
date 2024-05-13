@@ -21,6 +21,14 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
   bool obscureText = true;
 
+  @override
+  void initState() {
+    super.initState();
+    if (widget.email != null) {
+      emailController.text = widget.email ?? "";
+    }
+  }
+
   void checkUser() {
     final email = emailController.text;
     final pass = passwordController.text;
@@ -32,8 +40,11 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         user.isLogin = true;
       });
-      Navigator.pushAndRemoveUntil(context,  MaterialPageRoute(builder: (context) => const AdminPage()), (route) => false);
-    } 
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const AdminPage()),
+          (route) => false);
+    }
   }
 
   @override
@@ -75,7 +86,9 @@ class _LoginPageState extends State<LoginPage> {
                       textColor: Colors.grey,
                     ),
                     AppTextField2(
-                      controller: emailController,
+                      controller: widget.email != null
+                          ? TextEditingController(text: widget.email)
+                          : emailController,
                       hintText: "Enter Email",
                       textInputAction: TextInputAction.next,
                     ),
@@ -92,11 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                       textInputAction: TextInputAction.done,
                       obscureText: obscureText,
                       icon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              obscureText = !obscureText;
-                            });
-                          },
+                          onPressed: () =>setState(() => obscureText = !obscureText),
                           icon: Icon(obscureText
                               ? Icons.visibility_off
                               : Icons.visibility)),

@@ -75,7 +75,8 @@ class AppCartDetail extends StatelessWidget {
                           Icons.add,
                           color: pyColor,
                         )),
-                    const  SizedBox(width: 40),
+                    // const  SizedBox(width: 40),
+                    Spacer(),
                     AppTextStyle(
                         text: '\$ ${cartFruits.price ?? "0.0"}',
                         fontSize: 18,

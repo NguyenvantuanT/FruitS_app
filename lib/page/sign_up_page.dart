@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_text_filder.dart';
 import 'package:nectar/components/app_text_stytle.dart';
+import 'package:nectar/models/auth_model.dart';
 import 'package:nectar/page/log_in_page.dart';
 import 'package:nectar/themes/colors.dart';
 
@@ -103,9 +104,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         bgColor: pyColor,
                         boderColor: pyColor,
                         onTap: () {
+                          AuthModel newUser = AuthModel(
+                            name: usernameController.text.trim(),
+                            email: emailController.text.trim(),
+                            pass: passwordController.text,
+                          );
 
-                          
-
+                          persons.add(newUser);
+                          setState(() {});
                           Route newRoute = MaterialPageRoute(
                               builder: (context) =>
                                   LoginPage(email: emailController.text));
