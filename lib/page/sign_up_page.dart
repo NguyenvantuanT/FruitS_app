@@ -24,21 +24,22 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Stack(
-        children: [
-          Image.asset(
-            "assets/images/bg2.png",
-            width: size.width,
-            height: size.height,
-            fit: BoxFit.cover,
-          ),
-          Center(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0)
-                    .copyWith(top: MediaQuery.of(context).padding.top + 40.0),
-                child: GestureDetector(
-                  onTap: () => FocusScope.of(context).unfocus(),
+      resizeToAvoidBottomInset: false,
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Stack(
+          children: [
+            Image.asset(
+              "assets/images/bg2.png",
+              width: size.width,
+              height: size.height,
+              fit: BoxFit.cover,
+            ),
+            Center(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0)
+                      .copyWith(top: MediaQuery.of(context).padding.top + 40.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisSize: MainAxisSize.min,
@@ -109,7 +110,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             email: emailController.text.trim(),
                             pass: passwordController.text,
                           );
-
+                  
                           persons.add(newUser);
                           setState(() {});
                           Route newRoute = MaterialPageRoute(
@@ -152,9 +153,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

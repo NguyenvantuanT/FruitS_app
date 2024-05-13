@@ -37,13 +37,15 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           setState(() {});
           Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) =>  LoginPage(email: user.email)),
+              MaterialPageRoute(
+                  builder: (context) => LoginPage(email: user.email)),
               (route) => false);
         }
       }
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Image.asset(
@@ -53,64 +55,64 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             fit: BoxFit.cover,
           ),
           Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const AppTextStyle(
-                    text: 'Change Password',
-                    fontSize: 23,
-                    fontWeight: FontWeight.normal,
-                  ),
-                  const SizedBox(height: 30),
-                  AppTextField2(
-                    controller: passwordController,
-                    textInputAction: TextInputAction.next,
-                    hintText: 'Current Password',
-                    obscureText: obscureText1,
-                    icon: IconButton(
-                        onPressed: () =>
-                            setState(() => obscureText1 = !obscureText1),
-                        icon: obscureText1
-                            ? const Icon(Icons.visibility_off)
-                            : const Icon(Icons.visibility)),
-                  ),
-                  const SizedBox(height: 10),
-                  AppTextField2(
-                    controller: newPasswordController,
-                    textInputAction: TextInputAction.next,
-                    hintText: 'New Password',
-                    obscureText: obscureText2,
-                    icon: IconButton(
-                        onPressed: () =>
-                            setState(() => obscureText2 = !obscureText2),
-                        icon: obscureText2
-                            ? const Icon(Icons.visibility_off)
-                            : const Icon(Icons.visibility)),
-                  ),
-                  const SizedBox(height: 10),
-                  AppTextField2(
-                    controller: confirmPasswordController,
-                    textInputAction: TextInputAction.next,
-                    hintText: 'Confirm Password',
-                    obscureText: obscureText3,
-                    icon: IconButton(
-                        onPressed: () =>
-                            setState(() => obscureText3 = !obscureText3),
-                        icon: obscureText3
-                            ? const Icon(Icons.visibility_off)
-                            : const Icon(Icons.visibility)),
-                  ),
-                  const SizedBox(height: 30),
-                  AppButton(
-                    text: 'Done',
-                    boderColor: pyColor,
-                    bgColor: pyColor,
-                    onTap: checkPass,
-                  ),
-                  const SizedBox(height: 200),
-                ],
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  children: [
+                    const AppTextStyle(
+                      text: 'Change Password',
+                      fontSize: 23,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    const SizedBox(height: 20),
+                    AppTextField2(
+                      controller: passwordController,
+                      textInputAction: TextInputAction.next,
+                      hintText: 'Current Password',
+                      obscureText: obscureText1,
+                      icon: IconButton(
+                          onPressed: () =>
+                              setState(() => obscureText1 = !obscureText1),
+                          icon: obscureText1
+                              ? const Icon(Icons.visibility_off)
+                              : const Icon(Icons.visibility)),
+                    ),
+                    const SizedBox(height: 10),
+                    AppTextField2(
+                      controller: newPasswordController,
+                      textInputAction: TextInputAction.next,
+                      hintText: 'New Password',
+                      obscureText: obscureText2,
+                      icon: IconButton(
+                          onPressed: () =>
+                              setState(() => obscureText2 = !obscureText2),
+                          icon: obscureText2
+                              ? const Icon(Icons.visibility_off)
+                              : const Icon(Icons.visibility)),
+                    ),
+                    const SizedBox(height: 10),
+                    AppTextField2(
+                      controller: confirmPasswordController,
+                      textInputAction: TextInputAction.next,
+                      hintText: 'Confirm Password',
+                      obscureText: obscureText3,
+                      icon: IconButton(
+                          onPressed: () =>
+                              setState(() => obscureText3 = !obscureText3),
+                          icon: obscureText3
+                              ? const Icon(Icons.visibility_off)
+                              : const Icon(Icons.visibility)),
+                    ),
+                    const SizedBox(height: 30),
+                    AppButton(
+                      text: 'Done',
+                      boderColor: pyColor,
+                      bgColor: pyColor,
+                      onTap: checkPass,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
