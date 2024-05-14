@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:nectar/components/app_container_fruit.dart';
 import 'package:nectar/components/app_search_box.dart';
 import 'package:nectar/components/app_tab_bar.dart';
@@ -16,7 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final TextEditingController searchController = TextEditingController();
 
-  List<FruitModel> searchList = List.from(fruits);
+  List<FruitModel> searchList = [];
 
   void _search(String value) {
     value = value.toLowerCase();

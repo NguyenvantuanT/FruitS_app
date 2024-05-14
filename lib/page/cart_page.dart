@@ -5,6 +5,7 @@ import 'package:nectar/components/app_row.dart';
 import 'package:nectar/components/app_text_stytle.dart';
 import 'package:nectar/models/fruit_model.dart';
 import 'package:nectar/page/order_accect.dart';
+import 'package:nectar/page/payment_page.dart';
 import 'package:nectar/themes/colors.dart';
 
 class CartPage extends StatefulWidget {
@@ -83,70 +84,66 @@ class _CartPageState extends State<CartPage> {
 
   Widget _checkOut(BuildContext context) {
     return FractionallySizedBox(
-        widthFactor: 0.9,
-        child: AppButton(
-          text: "Go To Checkout",
-          bgColor: pyColor,
-          boderColor: pyColor,
-          onTap: () {
-            showModalBottomSheet(
-                elevation: 0.9,
-                backgroundColor: Colors.white,
-                context: context,
-                builder: (context) {
-                  return SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const AppTextStyle(
-                                text: "Checkout",
-                                fontWeight: FontWeight.w500,
-                              ),
-                              TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const AppTextStyle(
-                                      text: "X", fontWeight: FontWeight.w500))
-                            ],
-                          ),
-                        ),
-                        Divider(
-                          color: Colors.grey.shade500,
-                        ),
-                        const AppRow(text: "Delivery", text2: "Select Method"),
-                        const AppRow(text: "Payment", text2: "Card"),
-                        const AppRow(
-                            text: "Promo Code", text2: "Pick Discount"),
-                        AppRow(
-                            text: "Total Cost",
-                            text2: totalPrice.toStringAsFixed(2)),
-                        const SizedBox(height: 20),
-                        FractionallySizedBox(
-                          widthFactor: 0.7,
-                          child: AppButton(
-                            text: "Place Order",
-                            bgColor: pyColor,
-                            boderColor: pyColor,
-                            onTap: () {
-                              cartFruits.clear();
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const OrderAccepted()),
-                                  (route) => false);
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                      ],
-                    ),
-                  );
-                });
-          },
-        ));
+      widthFactor: 0.9,
+      child: AppButton(
+        text: "Go To Checkout",
+        bgColor: pyColor,
+        boderColor: pyColor,
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const PaymentPage()),
+          );
+          // showModalBottomSheet(
+          //     elevation: 0.9,
+          //     backgroundColor: Colors.white,
+          //     context: context,
+          //     builder: (context) {
+          //       return SingleChildScrollView(
+          //         child: Column(
+          //           children: [
+          //             Padding(
+          //               padding: const EdgeInsets.all(15.0),
+          //               child: Row(
+          //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //                 children: [
+          //                   const AppTextStyle(
+          //                     text: "Checkout",
+          //                     fontWeight: FontWeight.w500,
+          //                   ),
+          //                   TextButton(
+          //                       onPressed: () => Navigator.pop(context),
+          //                       child: const AppTextStyle(
+          //                           text: "X", fontWeight: FontWeight.w500))
+          //                 ],
+          //               ),
+          //             ),
+          //             Divider(
+          //               color: Colors.grey.shade500,
+          //             ),
+          //             const AppRow(text: "Delivery", text2: "Select Method"),
+          //             const AppRow(text: "Payment", text2: "Card"),
+          //             const AppRow(text: "Promo Code", text2: "Pick Discount"),
+          //             AppRow(
+          //                 text: "Total Cost",
+          //                 text2: totalPrice.toStringAsFixed(2)),
+          //             const SizedBox(height: 20),
+          //             FractionallySizedBox(
+          //               widthFactor: 0.7,
+          //               child: AppButton(
+          //                 text: "Place Order",
+          //                 bgColor: pyColor,
+          //                 boderColor: pyColor,
+          //                 onTap: () {},
+          //               ),
+          //             ),
+          //             const SizedBox(height: 20),
+          //           ],
+          //         ),
+          //       );
+          //     });
+        },
+      ),
+    );
   }
 }
