@@ -50,8 +50,7 @@ class _OnbordingPageState extends State<OnbordingPage> {
                       widthFactor: 0.9,
                       child: AppButton(
                         text: 'Get Started',
-                        bgColor: pyColor,
-                        boderColor: pyColor,
+                        bgColor: AppColor.green,
                         onTap: () {
                           Navigator.pushAndRemoveUntil(
                               context,

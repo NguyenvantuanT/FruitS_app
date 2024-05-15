@@ -29,7 +29,7 @@ class _PaymentPageState extends State<PaymentPage> {
           AppPayment(
             text: 'Payment Method',
             icon: const Icon(Icons.chevron_right),
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const AppPaymentMethodPage())),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const PaymentMethodPage())),
           ),
         ]),
       ),

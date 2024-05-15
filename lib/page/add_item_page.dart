@@ -76,8 +76,7 @@ class _AddItemPageState extends State<AddItemPage> {
               const SizedBox(height: 40),
               AppButton(
                 text: "Add Fruit",
-                bgColor: pyColor,
-                boderColor: pyColor,
+                bgColor: AppColor.green,
                 onTap: () async {
                   nameController.clear();
                   priceController.clear();
@@ -89,7 +88,7 @@ class _AddItemPageState extends State<AddItemPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: pyColor,
+        backgroundColor: AppColor.green,
         onPressed: addNewFruit,
         child: const Icon(
           Icons.add,

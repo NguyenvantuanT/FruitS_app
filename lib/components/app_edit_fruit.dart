@@ -8,11 +8,13 @@ class AppEditFruit extends StatelessWidget {
     super.key,
     this.onDelete,
     this.onTap,
+    this.icon,
   });
 
   final Function()? onTap;
   final Function()? onDelete;
   final FruitModel fruit;
+  final Icon? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +23,15 @@ class AppEditFruit extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10.0),
         decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(14.0)),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black26,
-                  offset: Offset(0.0, 3.0),
-                  blurRadius: 6.0),
-            ]),
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(14.0)),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black26,
+                offset: Offset(0.0, 3.0),
+                blurRadius: 6.0),
+          ],
+        ),
         child: ListTile(
           leading: Image.asset(fruit.img ?? ''),
           title: AppTextStyle(
@@ -46,12 +49,15 @@ class AppEditFruit extends StatelessWidget {
           trailing: GestureDetector(
             onTap: onDelete,
             behavior: HitTestBehavior.translucent,
-            child: const Padding(
-              padding: EdgeInsets.all(4.0),
-              child: CircleAvatar(
-                  backgroundColor: Colors.black26,
-                  radius: 16.6,
-                  child: Icon(Icons.delete, size: 18.0, color: Colors.white)),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: icon != null
+                  ? CircleAvatar(
+                      backgroundColor: Colors.black26,
+                      radius: 16.6,
+                      child: icon,
+                    )
+                  : null,
             ),
           ),
         ),

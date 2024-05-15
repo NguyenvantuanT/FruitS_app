@@ -10,10 +10,12 @@ class AppCartDetail extends StatelessWidget {
       this.onAdd,
       this.onRemove,
       this.onDelete});
+      
   final FruitModel cartFruits;
   final Function()? onAdd;
   final Function()? onRemove;
   final Function()? onDelete;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -71,12 +73,12 @@ class AppCartDetail extends StatelessWidget {
                     ),
                     IconButton(
                         onPressed: onAdd,
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.add,
-                          color: pyColor,
+                          color: AppColor.green,
                         )),
                     // const  SizedBox(width: 40),
-                    Spacer(),
+                    const Spacer(),
                     AppTextStyle(
                         text: '\$ ${cartFruits.price ?? "0.0"}',
                         fontSize: 18,

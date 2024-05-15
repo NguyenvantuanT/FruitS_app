@@ -116,8 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(height: 40),
                       AppButton(
                           text: "Log In",
-                          bgColor: pyColor,
-                          boderColor: pyColor,
+                          bgColor: AppColor.green,
                           onTap: checkUser),
                       const SizedBox(height: 10),
                       Row(

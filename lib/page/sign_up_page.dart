@@ -102,8 +102,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       const SizedBox(height: 30),
                       AppButton(
                         text: "Sign Up",
-                        bgColor: pyColor,
-                        boderColor: pyColor,
+                        bgColor: AppColor.green,
                         onTap: () {
                           AuthModel newUser = AuthModel(
                             name: usernameController.text.trim(),

@@ -107,8 +107,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     const SizedBox(height: 30),
                     AppButton(
                       text: 'Done',
-                      boderColor: pyColor,
-                      bgColor: pyColor,
+                      bgColor: AppColor.green,
                       onTap: checkPass,
                     ),
                   ],

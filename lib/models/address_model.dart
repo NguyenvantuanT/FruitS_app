@@ -34,4 +34,5 @@ List<AddressModel> paymentMedhods = [
   AddressModel()..adddress = 'Credit, debit Card',
   AddressModel()..adddress = 'Paypal',
   AddressModel()..adddress = 'Cash on Delivery',
+  
 ];

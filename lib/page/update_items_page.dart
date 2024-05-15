@@ -54,11 +54,10 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
           ),
           const SizedBox(height: 16.0),
           _divider(),
-          const SizedBox(height: 16.0),
           Expanded(
             child: ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 20.0)
-                  .copyWith(bottom: 30),
+                  .copyWith(top: 10, bottom: 30),
               separatorBuilder: (_, __) => const SizedBox(height: 10.0),
               itemCount: listSearch.length,
               itemBuilder: (context, index) {
@@ -67,6 +66,7 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
                   fruit,
                   onDelete: () => _delete(context, fruit),
                   onTap: () => _editing(context, fruit),
+                  icon: const Icon(Icons.delete, size: 18.0, color: Colors.white),
                 );
               },
             ),
@@ -83,7 +83,7 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
     );
   }
 
-  // editing(context, fruit, index);
+
   void _delete(BuildContext context, FruitModel fruit) {
     showDialog(
         context: context,

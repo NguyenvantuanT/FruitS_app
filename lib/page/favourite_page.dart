@@ -50,8 +50,7 @@ class _FavouritePagesState extends State<FavouritePages> {
                 widthFactor: 0.9,
                 child: AppButton(
                   text: 'Add All To Cart',
-                  bgColor: pyColor,
-                  boderColor: pyColor,
+                  bgColor: AppColor.green,
                   onTap: () {
                     cartFruits.addAll(favourites);
                     Navigator.push(

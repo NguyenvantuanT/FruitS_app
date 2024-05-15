@@ -23,7 +23,7 @@ class AppTabBar extends StatelessWidget implements PreferredSizeWidget {
         const Spacer(),
         Text(
           text,
-          style: TextStyle(color: Colors.black, fontSize: 20),
+          style:const TextStyle(color: Colors.black, fontSize: 20),
           textAlign: TextAlign.center,
         ),
       ]),

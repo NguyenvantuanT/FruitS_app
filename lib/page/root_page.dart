@@ -29,7 +29,7 @@ class _RootPageState extends State<RootPage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-          fixedColor: pyColor,
+          fixedColor: AppColor.green,
           type: BottomNavigationBarType.fixed,
           currentIndex: selectIndex,
           onTap: (int index) {

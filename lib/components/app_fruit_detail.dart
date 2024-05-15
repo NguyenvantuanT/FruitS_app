@@ -73,7 +73,7 @@ class AppFruitDetail extends StatelessWidget {
                           fruit.isFavourite
                               ? Icons.favorite
                               : Icons.favorite_border,
-                          color: fruit.isFavourite ? Colors.red : null,
+                          color: fruit.isFavourite ? AppColor.red: null,
                         ),
                       )
                     ],
@@ -103,9 +103,9 @@ class AppFruitDetail extends StatelessWidget {
                       ),
                       IconButton(
                           onPressed: onAdd,
-                          icon: Icon(
+                          icon:const Icon(
                             Icons.add,
-                            color: pyColor,
+                            color: AppColor.green,
                           )),
                       const Spacer(),
                       AppTextStyle(
@@ -133,8 +133,7 @@ class AppFruitDetail extends StatelessWidget {
                   const Spacer(),
                   AppButton(
                     text: "Add To Basket",
-                    bgColor: pyColor,
-                    boderColor: pyColor,
+                    bgColor: AppColor.green,
                     height: 60,
                     onTap: onTap,
                   )

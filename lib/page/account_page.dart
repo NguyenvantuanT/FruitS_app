@@ -27,7 +27,7 @@ class AccountPage extends StatelessWidget {
               children: [
                 CircleAvatar(
                   maxRadius: 30.0,
-                  backgroundColor: pyColor,
+                  backgroundColor: AppColor.grey,
                   child: Image.asset("assets/images/food_1.png"),
                 ),
                 const SizedBox(width: 20),
@@ -77,9 +77,9 @@ class AccountPage extends StatelessWidget {
                 .copyWith(top: 10, bottom: 20),
             child: AppButton(
               text: "Log Out",
-              bgColor: pyColor2,
-              textColor: pyColor,
-              boderColor: pyColor,
+              bgColor: AppColor.grey,
+              textColor: AppColor.green,
+              boderColor: AppColor.green,
               onTap: () {
                 user.isLogin = false;
                 Route route = MaterialPageRoute(

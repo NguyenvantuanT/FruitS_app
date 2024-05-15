@@ -5,15 +5,16 @@ import 'package:nectar/components/app_tab_bar.dart';
 import 'package:nectar/models/address_model.dart';
 import 'package:nectar/themes/colors.dart';
 
-class AppPaymentMethodPage extends StatefulWidget {
-  const AppPaymentMethodPage({super.key});
+class PaymentMethodPage extends StatefulWidget {
+  const PaymentMethodPage({super.key});
 
   @override
-  State<AppPaymentMethodPage> createState() => _AppPaymentMethodPageState();
+  State<PaymentMethodPage> createState() => _PaymentMethodPageState();
 }
 
-class _AppPaymentMethodPageState extends State<AppPaymentMethodPage> {
-  bool check = false;
+class _PaymentMethodPageState extends State<PaymentMethodPage> {
+  AddressModel? _selectedMethod;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,27 +23,28 @@ class _AppPaymentMethodPageState extends State<AppPaymentMethodPage> {
       body: Column(
         children: [
           Expanded(
-              child: ListView.separated(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 20),
-            physics: const NeverScrollableScrollPhysics(),
-            separatorBuilder: (context, index) => const SizedBox(height: 10),
-            itemCount: paymentMedhods.length,
-            itemBuilder: (context, index) {
-              final paymentMedhod = paymentMedhods[index];
-              return AppPaymentMethodBox(
-                paymentMethods: paymentMedhod,
-                onTap: () => setState(() =>
-                    paymentMedhod.isDone = !(paymentMedhod.isDone ?? false)),
-              );
-            },
-          )),
+            child: ListView.separated(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 20),
+              separatorBuilder: (context, index) => const SizedBox(height: 10),
+              itemCount: paymentMedhods.length,
+              itemBuilder: (context, index) {
+                final paymentMedhod = paymentMedhods[index];
+                return AppPaymentMethodBox(
+                  paymentMethod: paymentMedhod,
+                  selectedMethod: _selectedMethod,
+                  onChanged: (AddressModel? value) =>
+                      setState(() => _selectedMethod = value),
+                );
+              },
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0)
                 .copyWith(bottom: 40),
-            child: AppButton(
+            child:const AppButton(
               text: 'Next',
-              bgColor: pyColor,
+              bgColor: AppColor.green,
             ),
           )
         ],

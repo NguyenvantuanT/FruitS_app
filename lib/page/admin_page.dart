@@ -26,7 +26,7 @@ class _AdminPageState extends State<AdminPage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-          fixedColor: pyColor,
+          fixedColor: AppColor.green,
           type: BottomNavigationBarType.fixed,
           currentIndex: selectIndex,
           onTap: (int index) {

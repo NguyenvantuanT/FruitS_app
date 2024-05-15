@@ -32,8 +32,7 @@ class _AdminUserPageState extends State<AdminUserPage> {
                     padding: const EdgeInsets.all(20.0),
                     child: AppButton(
                       text: "Admin",
-                      bgColor: pyColor,
-                      boderColor: pyColor,
+                      bgColor: AppColor.green,
                       onTap: () {
                         Route newRoute = MaterialPageRoute(
                             builder: (context) => const LoginPage());
@@ -45,8 +44,7 @@ class _AdminUserPageState extends State<AdminUserPage> {
                   padding: const EdgeInsets.all(20.0),
                   child: AppButton(
                     text: "User",
-                    bgColor: pyColor,
-                    boderColor: pyColor,
+                    bgColor: AppColor.green,
                     onTap: () {
                       Route newRoute = MaterialPageRoute(
                           builder: (context) => const RootPage());

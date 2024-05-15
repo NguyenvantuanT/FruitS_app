@@ -4,10 +4,16 @@ import 'package:nectar/models/address_model.dart';
 import 'package:nectar/themes/colors.dart';
 
 class AppChooseAddress extends StatelessWidget {
-  const AppChooseAddress({super.key, required this.address, this.onTap});
+  const AppChooseAddress({
+    super.key,
+    required this.address,
+    this.onChanged,
+    this.selectedAddress,
+  });
 
   final AddressModel address;
-  final Function()? onTap;
+  final AddressModel? selectedAddress;
+  final Function(AddressModel?)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,21 +35,21 @@ class AppChooseAddress extends StatelessWidget {
               text: address.adddress ?? '',
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              textColor: pyBrown,
+              textColor: AppColor.brown,
             ),
-            GestureDetector(
-              onTap: onTap,
-              behavior: HitTestBehavior.translucent,
-              child: Container(
-                color: Colors.white,
-                child: Icon(
-                  address.isDone == true
-                      ? Icons.check_box_outlined
-                      : Icons.check_box_outline_blank,
-                  color: Colors.red,
-                ),
+            Radio(
+              value: address,
+              groupValue: selectedAddress,
+              onChanged: onChanged,
+              fillColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+                  if (states.contains(MaterialState.selected)) {
+                    return AppColor.red;
+                  }
+                  return AppColor.grey.withOpacity(0.5);
+                },
               ),
-            )
+            ),
           ],
         ),
         const SizedBox(height: 8),
@@ -51,14 +57,14 @@ class AppChooseAddress extends StatelessWidget {
           text: address.name ?? '',
           fontSize: 12,
           fontWeight: FontWeight.w600,
-          textColor: pyGrey,
+          textColor: AppColor.grey,
         ),
         const SizedBox(height: 8),
         AppTextStyle(
           text: address.local ?? '',
           fontSize: 12,
           fontWeight: FontWeight.w600,
-          textColor: pyGrey,
+          textColor: AppColor.grey,
         ),
       ]),
     );
