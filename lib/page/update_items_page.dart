@@ -157,14 +157,19 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
                               fruit.price = double.parse(newPriceController.text);
                               fruit.fs = newfsController.text.trim();
                               fruit.description = newDescriptionController.text.trim();
-                              favourites.removeWhere((element) => element.id == fruit.id);
-                              if (fruit.isFavourite == true) {
-                                favourites.add(fruit);
-                              }
 
-                              cartFruits.removeWhere((element) => element.id == fruit.id);
-                              if (fruit.isCart == true) {
-                                cartFruits.add(fruit);
+                              if(favourites.any((element) => element.id == fruit.id)){
+                                favourites.removeWhere((element) => element.id == fruit.id);
+                                if (fruit.isFavourite == true) {
+                                  favourites.add(fruit);
+                                }
+                              }
+                              
+                              if(cartFruits.any((element) => element.id == fruit.id)){
+                                cartFruits.removeWhere((element) => element.id == fruit.id);
+                                if (fruit.isCart == true) {
+                                  cartFruits.add(fruit);
+                                }
                               }
 
                               setState(() {});

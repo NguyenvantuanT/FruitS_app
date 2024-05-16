@@ -77,7 +77,7 @@ class AccountPage extends StatelessWidget {
                 .copyWith(top: 10, bottom: 20),
             child: AppButton(
               text: "Log Out",
-              bgColor: AppColor.grey,
+              bgColor: AppColor.white,
               textColor: AppColor.green,
               boderColor: AppColor.green,
               onTap: () {

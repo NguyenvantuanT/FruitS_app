@@ -19,7 +19,6 @@ class _FruitDetailState extends State<FruitDetail> {
     void addToFavourite() {
       setState(() {
         Fruit.isFavourite = !Fruit.isFavourite;
-
         if (Fruit.isFavourite) {
           favourites.add(Fruit);
         } else {

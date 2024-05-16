@@ -51,6 +51,7 @@ class _OnbordingPageState extends State<OnbordingPage> {
                       child: AppButton(
                         text: 'Get Started',
                         bgColor: AppColor.green,
+                        boderColor: AppColor.green,
                         onTap: () {
                           Navigator.pushAndRemoveUntil(
                               context,
