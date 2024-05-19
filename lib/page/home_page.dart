@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.black26,
                   offset: Offset(0.0, 3.0),
                   blurRadius: 6.0)
-            ]),
+            ]), 
         child: const Row(
           children: [
             Icon(Icons.search, color: Colors.red),

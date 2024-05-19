@@ -5,6 +5,7 @@ import 'package:nectar/components/app_tab_bar.dart';
 import 'package:nectar/components/app_text_filder.dart';
 import 'package:nectar/components/app_text_stytle.dart';
 import 'package:nectar/models/fruit_model.dart';
+import 'package:nectar/services/local/shared_prefs.dart';
 
 class UpdateItemsPage extends StatefulWidget {
   const UpdateItemsPage({Key? key}) : super(key: key);
@@ -20,12 +21,22 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
   TextEditingController newDescriptionController = TextEditingController();
   TextEditingController newfsController = TextEditingController();
 
+  SharedPrefs prefs = SharedPrefs();
+
   List<FruitModel> listSearch = [];
 
   @override
   void initState() {
     super.initState();
-    listSearch = [...fruits];
+    _getFruitList();
+  }
+
+  void _getFruitList() {
+    prefs.getFruitList().then((value) {
+      fruits = value ?? [...fruits];
+      listSearch = [...fruits];
+      setState(() {});
+    });
   }
 
   void _search(String value) {
@@ -66,7 +77,8 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
                   fruit,
                   onDelete: () => _delete(context, fruit),
                   onTap: () => _editing(context, fruit),
-                  icon: const Icon(Icons.delete, size: 18.0, color: Colors.white),
+                  icon:
+                      const Icon(Icons.delete, size: 18.0, color: Colors.white),
                 );
               },
             ),
@@ -83,7 +95,6 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
     );
   }
 
-
   void _delete(BuildContext context, FruitModel fruit) {
     showDialog(
         context: context,
@@ -99,9 +110,11 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
               actions: [
                 TextButton(
                     onPressed: () {
-                      fruits.removeWhere((element) => element.id == fruit.id);
+                      fruits
+                          .removeWhere((element) => element.id == fruit.id);
                       listSearch
                           .removeWhere((element) => element.id == fruit.id);
+                      prefs.saveFruitList(fruits);
                       setState(() {});
                       Navigator.pop(context);
                     },
@@ -154,24 +167,14 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
                         TextButton(
                             onPressed: () {
                               fruit.name = newNameController.text.trim();
-                              fruit.price = double.parse(newPriceController.text);
+                              fruit.price =double.parse(newPriceController.text);
                               fruit.fs = newfsController.text.trim();
                               fruit.description = newDescriptionController.text.trim();
 
-                              if(favourites.any((element) => element.id == fruit.id)){
-                                favourites.removeWhere((element) => element.id == fruit.id);
-                                if (fruit.isFavourite == true) {
-                                  favourites.add(fruit);
-                                }
-                              }
-                              
-                              if(cartFruits.any((element) => element.id == fruit.id)){
-                                cartFruits.removeWhere((element) => element.id == fruit.id);
-                                if (fruit.isCart == true) {
-                                  cartFruits.add(fruit);
-                                }
-                              }
+                              _updateFavorites(fruit);
+                              _updateCartFruits(fruit);
 
+                              prefs.saveFruitList(fruits);
                               setState(() {});
                               newNameController.clear();
                               newDescriptionController.clear();
@@ -201,5 +204,27 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
                 ),
               ),
             ));
+  }
+
+  void _updateCartFruits(FruitModel fruit) {
+    if (cartFruits
+        .any((element) => element.id == fruit.id)) {
+      cartFruits.removeWhere(
+          (element) => element.id == fruit.id);
+      if (fruit.isCart == true) {
+        cartFruits.add(fruit);
+      }
+    }
+  }
+
+  void _updateFavorites(FruitModel fruit) {
+    if (favourites
+        .any((element) => element.id == fruit.id)) {
+      favourites.removeWhere(
+          (element) => element.id == fruit.id);
+      if (fruit.isFavourite == true) {
+        favourites.add(fruit);
+      }
+    }
   }
 }

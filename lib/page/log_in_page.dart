@@ -4,7 +4,9 @@ import 'package:nectar/components/app_text_filder.dart';
 import 'package:nectar/components/app_text_stytle.dart';
 import 'package:nectar/models/auth_model.dart';
 import 'package:nectar/page/admin_page.dart';
+import 'package:nectar/page/root_page.dart';
 import 'package:nectar/page/sign_up_page.dart';
+import 'package:nectar/services/local/shared_prefs.dart';
 import 'package:nectar/themes/colors.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,6 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool obscureText = true;
+  SharedPrefs prefs = SharedPrefs();
 
   @override
   void initState() {
@@ -27,25 +30,40 @@ class _LoginPageState extends State<LoginPage> {
     if (widget.email != null) {
       emailController.text = widget.email ?? "";
     }
+    _getAuthList();
+  }
+
+  void _getAuthList() {
+    prefs.getAuthList().then((value) {
+      persons = value ?? [...persons];
+      setState(() {});
+    });
   }
 
   void checkUser() {
     final email = emailController.text;
     final pass = passwordController.text;
 
-    final user = persons.firstWhere(
-        (element) => element.email == email && element.pass == pass);
-
-    if (user != null) {
-      setState(() {
-        user.isLogin = true;
-      });
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const AdminPage()),
-          (route) => false);
+    AuthModel user = persons.firstWhere(
+      (person) => person.email == email && person.pass == pass,
+    );
+    user.isLogin = true;
+    
+    if (user.isAdmin == true) {
+       Route route = MaterialPageRoute(builder: (context) => const AdminPage());
+        Navigator.pushAndRemoveUntil(context, route, (route) => false);
+    } else {
+       Route route = MaterialPageRoute(builder: (context) => const RootPage());
+        Navigator.pushAndRemoveUntil(context, route, (route) => false);
     }
-  }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(user.isAdmin ?? false
+            ? 'Admin login successful'
+            : 'User login successful'),
+      ),
+    );
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: GestureDetector(
-         onTap: () => FocusScope.of(context).unfocus(),
+        onTap: () => FocusScope.of(context).unfocus(),
         child: Stack(
           children: [
             Image.asset(
@@ -108,7 +126,8 @@ class _LoginPageState extends State<LoginPage> {
                         textInputAction: TextInputAction.done,
                         obscureText: obscureText,
                         icon: IconButton(
-                            onPressed: () =>setState(() => obscureText = !obscureText),
+                            onPressed: () =>
+                                setState(() => obscureText = !obscureText),
                             icon: Icon(obscureText
                                 ? Icons.visibility_off
                                 : Icons.visibility)),

@@ -5,6 +5,7 @@ import 'package:nectar/components/app_tab_bar.dart';
 import 'package:nectar/components/app_text_filder.dart';
 import 'package:nectar/components/app_text_stytle.dart';
 import 'package:nectar/models/fruit_model.dart';
+import 'package:nectar/services/local/shared_prefs.dart';
 import 'package:nectar/themes/colors.dart';
 
 class AddItemPage extends StatefulWidget {
@@ -20,6 +21,21 @@ class _AddItemPageState extends State<AddItemPage> {
   TextEditingController descriptionController = TextEditingController();
   final ImagePicker _picker = ImagePicker();
 
+  SharedPrefs prefs = SharedPrefs();
+
+  @override
+  void initState() {
+    super.initState();
+    _getFruitList();
+  }
+
+  void _getFruitList() {
+    prefs.getFruitList().then((value) {
+      fruits = value ?? [...fruits];
+      setState(() {});
+    });
+  }
+
   void addNewFruit() async {
     final XFile? pickedImage =
         await _picker.pickImage(source: ImageSource.gallery);
@@ -34,6 +50,8 @@ class _AddItemPageState extends State<AddItemPage> {
         quantity: 0,
       );
       fruits.add(newFruit);
+      prefs.saveFruitList(fruits);
+      setState(() {});
     }
   }
 

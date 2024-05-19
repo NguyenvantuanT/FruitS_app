@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nectar/components/app_button.dart';
-import 'package:nectar/page/admin_user_page.dart';
+import 'package:nectar/page/log_in_page.dart';
+import 'package:nectar/services/local/shared_prefs.dart';
 import 'package:nectar/themes/colors.dart';
 
 class OnbordingPage extends StatefulWidget {
@@ -11,6 +12,8 @@ class OnbordingPage extends StatefulWidget {
 }
 
 class _OnbordingPageState extends State<OnbordingPage> {
+  SharedPrefs prefs = SharedPrefs();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -52,12 +55,10 @@ class _OnbordingPageState extends State<OnbordingPage> {
                         text: 'Get Started',
                         bgColor: AppColor.green,
                         boderColor: AppColor.green,
-                        onTap: () {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const AdminUserPage()),
-                              (route) => false);
+                        onTap: ()  {
+                          prefs.setOnboarding(true);
+                          Route route = MaterialPageRoute(builder: (context) => const LoginPage());
+                          Navigator.pushAndRemoveUntil(context, route, (route) => false);
                         },
                       ))
                 ],

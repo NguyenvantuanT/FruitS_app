@@ -4,6 +4,7 @@ import 'package:nectar/components/app_text_filder.dart';
 import 'package:nectar/components/app_text_stytle.dart';
 import 'package:nectar/models/auth_model.dart';
 import 'package:nectar/page/log_in_page.dart';
+import 'package:nectar/services/local/shared_prefs.dart';
 import 'package:nectar/themes/colors.dart';
 
 class ChangePasswordPage extends StatefulWidget {
@@ -15,9 +16,9 @@ class ChangePasswordPage extends StatefulWidget {
 
 class _ChangePasswordPageState extends State<ChangePasswordPage> {
   final TextEditingController newPasswordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController currentPasswordController = TextEditingController();
+  SharedPrefs prefs = SharedPrefs();
 
   bool obscureText1 = true;
   bool obscureText2 = true;
@@ -30,16 +31,31 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     bool check = persons.any((element) => element.isLogin == true);
     AuthModel user = persons.firstWhere((element) => element.isLogin == check);
 
-    void checkPass() {
-      if (user.pass == passwordController.text) {
-        if (newPasswordController.text == confirmPasswordController.text) {
-          user.pass = newPasswordController.text.trim();
-          setState(() {});
+    void changePassword() {
+      final currentPassword = currentPasswordController.text;
+      final newPassword = newPasswordController.text;
+      final confirmPassword = confirmPasswordController.text;
+
+      if (user.pass == currentPassword) {
+        if (newPassword == confirmPassword) {
+          user.pass = newPassword;
+          prefs.saveAuthList(persons);
+          ScaffoldMessenger.of(context).showSnackBar(
+          const  SnackBar(
+              content: Text('Password changed successfully'),
+            ),
+          );
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
                   builder: (context) => LoginPage(email: user.email)),
               (route) => false);
+        }else{
+          ScaffoldMessenger.of(context).showSnackBar(
+          const  SnackBar(
+              content: Text('Invalid email or current password'),
+            ),
+          );
         }
       }
     }
@@ -67,7 +83,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     ),
                     const SizedBox(height: 20),
                     AppTextField2(
-                      controller: passwordController,
+                      controller: currentPasswordController,
                       textInputAction: TextInputAction.next,
                       hintText: 'Current Password',
                       obscureText: obscureText1,
@@ -108,7 +124,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     AppButton(
                       text: 'Done',
                       bgColor: AppColor.green,
-                      onTap: checkPass,
+                      onTap: changePassword,
                     ),
                   ],
                 ),

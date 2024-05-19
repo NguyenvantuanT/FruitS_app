@@ -4,6 +4,7 @@ import 'package:nectar/components/app_text_filder.dart';
 import 'package:nectar/components/app_text_stytle.dart';
 import 'package:nectar/models/auth_model.dart';
 import 'package:nectar/page/log_in_page.dart';
+import 'package:nectar/services/local/shared_prefs.dart';
 import 'package:nectar/themes/colors.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -19,6 +20,9 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController usernameController = TextEditingController();
 
   bool obscureText = true;
+  SharedPrefs prefs = SharedPrefs();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +115,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           );
                   
                           persons.add(newUser);
+                          prefs.saveAuthList(persons);
                           setState(() {});
                           Route newRoute = MaterialPageRoute(
                               builder: (context) =>
