@@ -56,7 +56,7 @@ class _OnbordingPageState extends State<OnbordingPage> {
                         bgColor: AppColor.green,
                         boderColor: AppColor.green,
                         onTap: ()  {
-                          prefs.setOnboarding(true);
+                          prefs.setOnboarding(false);
                           Route route = MaterialPageRoute(builder: (context) => const LoginPage());
                           Navigator.pushAndRemoveUntil(context, route, (route) => false);
                         },

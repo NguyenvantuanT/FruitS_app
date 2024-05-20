@@ -41,14 +41,13 @@ class AppChooseAddress extends StatelessWidget {
               value: address,
               groupValue: selectedAddress,
               onChanged: onChanged,
-              fillColor: MaterialStateProperty.resolveWith<Color>(
-                (Set<MaterialState> states) {
-                  if (states.contains(MaterialState.selected)) {
-                    return AppColor.red;
-                  }
-                  return AppColor.grey.withOpacity(0.5);
-                },
-              ),
+              fillColor: WidgetStateProperty.resolveWith<Color>(
+                  (Set<WidgetState> states) {
+                if (states.contains(WidgetState.selected)) {
+                  return AppColor.red;
+                }
+                return AppColor.grey.withOpacity(0.5);
+              }),
             ),
           ],
         ),

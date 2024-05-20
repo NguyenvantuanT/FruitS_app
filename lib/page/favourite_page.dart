@@ -16,8 +16,9 @@ class _FavouritePagesState extends State<FavouritePages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.white,
       appBar: AppBar(
+         backgroundColor: AppColor.white,
         title: const Text('Favourite',
             style: TextStyle(fontSize: 19, fontWeight: FontWeight.w500)),
         centerTitle: true,
@@ -37,7 +38,7 @@ class _FavouritePagesState extends State<FavouritePages> {
                   final favourite = favourites[index];
                   return FavouriteItem(favourite);
                 },
-                separatorBuilder: ((context, index) => Padding(
+                separatorBuilder: ((_,__) => Padding(
                       padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                       child: Divider(
                         color: Colors.grey.shade500,

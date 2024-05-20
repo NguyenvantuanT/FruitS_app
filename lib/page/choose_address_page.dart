@@ -67,7 +67,7 @@ class _ChooseAddressPageState extends State<ChooseAddressPage> {
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => PaymentMethodPage())),
+                          builder: (context) => const PaymentMethodPage())),
                 ),
               ),
             ],

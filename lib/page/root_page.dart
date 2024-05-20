@@ -29,6 +29,7 @@ class _RootPageState extends State<RootPage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: AppColor.white,
           fixedColor: AppColor.green,
           type: BottomNavigationBarType.fixed,
           currentIndex: selectIndex,

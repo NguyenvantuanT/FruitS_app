@@ -34,9 +34,9 @@ class AppPaymentMethodBox extends StatelessWidget {
           value: paymentMethod,
           groupValue: selectedMethod,
           onChanged: onChanged,
-          fillColor: MaterialStateProperty.resolveWith<Color>(
-            (Set<MaterialState> states) {
-              if (states.contains(MaterialState.selected)) {
+          fillColor: WidgetStateProperty.resolveWith<Color>(
+            (Set<WidgetState> states) {
+              if (states.contains(WidgetState.selected)) {
                 return Colors.red;
               }
               return Colors.grey.withOpacity(0.5);

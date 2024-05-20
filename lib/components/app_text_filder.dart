@@ -40,6 +40,7 @@ class AppTextField2 extends StatelessWidget {
             suffixIcon: icon,
           ),
           textInputAction: textInputAction,
+          
         ),
         Divider(
           color: Colors.grey.shade400,

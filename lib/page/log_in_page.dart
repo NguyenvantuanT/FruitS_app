@@ -47,15 +47,23 @@ class _LoginPageState extends State<LoginPage> {
     AuthModel user = persons.firstWhere(
       (person) => person.email == email && person.pass == pass,
     );
+    bool admin = user.isAdmin ?? false;
     user.isLogin = true;
-    
-    if (user.isAdmin == true) {
-       Route route = MaterialPageRoute(builder: (context) => const AdminPage());
-        Navigator.pushAndRemoveUntil(context, route, (route) => false);
+
+    setState(() {
+      prefs.setAdmin(admin);
+      prefs.setLoging(true);
+      prefs.saveAuthList(persons);
+    });
+
+    if (admin) {
+      Route route = MaterialPageRoute(builder: (context) => const AdminPage());
+      Navigator.pushAndRemoveUntil(context, route, (route) => false);
     } else {
-       Route route = MaterialPageRoute(builder: (context) => const RootPage());
-        Navigator.pushAndRemoveUntil(context, route, (route) => false);
+      Route route = MaterialPageRoute(builder: (context) => const RootPage());
+      Navigator.pushAndRemoveUntil(context, route, (route) => false);
     }
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(user.isAdmin ?? false
@@ -63,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
             : 'User login successful'),
       ),
     );
-    }
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -7,18 +7,49 @@ import 'package:nectar/page/log_in_page.dart';
 import 'package:nectar/services/local/shared_prefs.dart';
 import 'package:nectar/themes/colors.dart';
 
-class AccountPage extends StatelessWidget {
-  const AccountPage({
-    super.key,
-  });
-  
+class AccountPage extends StatefulWidget {
+  const AccountPage({super.key});
+
+  @override
+  State<AccountPage> createState() => _AccountPageState();
+}
+
+class _AccountPageState extends State<AccountPage> {
+  SharedPrefs prefs = SharedPrefs();
+  @override
+  void initState() {
+    super.initState();
+    _loadUser();
+  }
+
+  void _loadUser() async {
+    prefs.getAuthList().then((value) {
+      persons = value ?? [...persons];
+      setState(() {});
+    });
+  }
+
+  AuthModel? _loadCurrentUser() {
+    final user = persons.firstWhere((element) => element.isLogin == true,orElse: () => AuthModel());
+    return user.isLogin == true ? user : null;
+  }
+
+  void _logoutUser() {
+    final currentUser = _loadCurrentUser();
+    if (currentUser != null) {
+      currentUser.isLogin = false;
+    }
+    prefs.setAdmin(currentUser?.isAdmin ?? false);
+    prefs.setLoging(false);
+    prefs.saveAuthList(persons);
+    setState(() {});
+    Route route = MaterialPageRoute(builder: (context) => const LoginPage());
+    Navigator.push(context, route);
+  }
+
   @override
   Widget build(BuildContext context) {
-  SharedPrefs prefs = SharedPrefs();
-
-    bool check = persons.any((element) => element.isLogin == true);
-    AuthModel user = persons.firstWhere((element) => element.isLogin == check);
-
+    final AuthModel? currentUser = _loadCurrentUser();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -37,12 +68,12 @@ class AccountPage extends StatelessWidget {
                 Column(
                   children: [
                     AppTextStyle(
-                      text: check ? user.name ?? "" : "Username",
+                      text: currentUser?.name ?? "Username",
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
                     ),
                     AppTextStyle(
-                      text: check ? user.email ?? "" : 'Email@gmail.com',
+                      text: currentUser?.email ?? "Email@gmail.com",
                       fontSize: 17,
                       fontWeight: FontWeight.normal,
                       textColor: Colors.black26,
@@ -68,8 +99,13 @@ class AccountPage extends StatelessWidget {
                 const Spacer(),
                 IconButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>const ChangePasswordPage()));
-                    }, icon: const Icon(Icons.chevron_right)),
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const ChangePasswordPage()));
+                    },
+                    icon: const Icon(Icons.chevron_right)),
               ],
             ),
           ),
@@ -83,14 +119,7 @@ class AccountPage extends StatelessWidget {
               bgColor: AppColor.white,
               textColor: AppColor.green,
               boderColor: AppColor.green,
-              onTap: () {
-                user.isLogin = false;
-                prefs.setLoging(false);
-                prefs.saveAuthList(persons);
-                Route route = MaterialPageRoute(
-                    builder: (context) => const LoginPage());
-                Navigator.push(context, route);
-              },
+              onTap: _logoutUser,
             ),
           )
         ],

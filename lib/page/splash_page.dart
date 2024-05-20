@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:nectar/models/auth_model.dart';
 import 'package:nectar/page/admin_page.dart';
 import 'package:nectar/page/log_in_page.dart';
 import 'package:nectar/page/onbording_page.dart';
@@ -20,6 +19,8 @@ class _SplashPageState extends State<SplashPage> {
   SharedPrefs prefs = SharedPrefs();
   bool isOnboarding = false;
   bool isLoging = false;
+  bool isAdmin = false;
+
   @override
   void initState() {
     super.initState();
@@ -34,18 +35,19 @@ class _SplashPageState extends State<SplashPage> {
   void _checkLoginState() async {
     isOnboarding = await prefs.getOnboarding() ?? false;
     isLoging = await prefs.getLoging() ?? false;
+    isAdmin = await prefs.getAdmin() ?? false;
 
-    Timer(const Duration(milliseconds: 4000), () {
-      if (isLoging) {
-        final user = persons.firstWhere((element) => element.isAdmin == true,orElse: () => AuthModel());
-        if (user.isAdmin == true) {
-          _navigateTo(const AdminPage());
-        } else {
-          _navigateTo(const RootPage());
-        }
+
+    Timer(const Duration(seconds: 2), () {
+      if (isOnboarding) {
+        _navigateTo(const OnbordingPage());
       } else {
-        if (isOnboarding) {
-          _navigateTo(const OnbordingPage());
+        if (isLoging) {
+          if (isAdmin) {
+            _navigateTo(const AdminPage());
+          }else{
+            _navigateTo(const RootPage());
+          }
         } else {
           _navigateTo(const LoginPage());
         }
