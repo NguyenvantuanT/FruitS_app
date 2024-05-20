@@ -39,8 +39,6 @@ class _AccountPageState extends State<AccountPage> {
     if (currentUser != null) {
       currentUser.isLogin = false;
     }
-    prefs.setAdmin(currentUser?.isAdmin ?? false);
-    prefs.setLoging(false);
     prefs.saveAuthList(persons);
     setState(() {});
     Route route = MaterialPageRoute(builder: (context) => const LoginPage());

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:nectar/models/auth_model.dart';
 import 'package:nectar/page/admin_page.dart';
 import 'package:nectar/page/log_in_page.dart';
 import 'package:nectar/page/onbording_page.dart';
@@ -20,11 +21,18 @@ class _SplashPageState extends State<SplashPage> {
   bool isOnboarding = false;
   bool isLoging = false;
   bool isAdmin = false;
-
   @override
   void initState() {
     super.initState();
+    _getAuthList();
     _checkLoginState();
+  }
+
+  void _getAuthList() {
+    prefs.getAuthList().then((value) {
+      persons = value ?? [...persons];
+      setState(() {});
+    });
   }
 
   void _navigateTo(Widget page) {
@@ -34,9 +42,9 @@ class _SplashPageState extends State<SplashPage> {
 
   void _checkLoginState() async {
     isOnboarding = await prefs.getOnboarding() ?? false;
-    isLoging = await prefs.getLoging() ?? false;
-    isAdmin = await prefs.getAdmin() ?? false;
 
+    final isLoging = persons.any((element) => element.isLogin == true);
+    final isAdmin = persons.any((element) => element.isAdmin == true && element.isLogin == true);
 
     Timer(const Duration(seconds: 2), () {
       if (isOnboarding) {

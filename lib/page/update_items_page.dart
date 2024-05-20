@@ -6,6 +6,7 @@ import 'package:nectar/components/app_text_filder.dart';
 import 'package:nectar/components/app_text_stytle.dart';
 import 'package:nectar/models/fruit_model.dart';
 import 'package:nectar/services/local/shared_prefs.dart';
+import 'package:nectar/themes/colors.dart';
 
 class UpdateItemsPage extends StatefulWidget {
   const UpdateItemsPage({Key? key}) : super(key: key);
@@ -50,8 +51,9 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.white,
       appBar: const AppTabBar(
-        color: Colors.white,
+        color: AppColor.white,
         text: "Dhaka, Banassre",
       ),
       body: Column(

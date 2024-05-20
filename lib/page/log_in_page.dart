@@ -48,11 +48,9 @@ class _LoginPageState extends State<LoginPage> {
       (person) => person.email == email && person.pass == pass,
     );
     bool admin = user.isAdmin ?? false;
-    user.isLogin = true;
 
     setState(() {
-      prefs.setAdmin(admin);
-      prefs.setLoging(true);
+      user.isLogin = true;
       prefs.saveAuthList(persons);
     });
 
@@ -66,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(user.isAdmin ?? false
+        content: Text(admin
             ? 'Admin login successful'
             : 'User login successful'),
       ),

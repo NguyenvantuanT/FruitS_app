@@ -12,6 +12,7 @@ class FruitDetail extends StatefulWidget {
 }
 
 class _FruitDetailState extends State<FruitDetail> {
+
   @override
   Widget build(BuildContext context) {
     final Fruit = widget.fruit;

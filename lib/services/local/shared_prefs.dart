@@ -12,34 +12,8 @@ class SharedPrefs {
   final String keyLoging = 'keyLoging';
   final String keyAdmin = 'keyAdmin';
 
-
-  //Admin
-  Future<bool?> getAdmin() async {
-    SharedPreferences prefs = await _prefs;
-    return prefs.getBool(keyAdmin);
-  }
-
-  Future<void> setAdmin(bool admin) async {
-    SharedPreferences prefs = await _prefs;
-    await prefs.setBool(keyAdmin, admin);
-  }
-  
-  Future<void> removeAdmin() async {
-    SharedPreferences prefs = await _prefs;
-    await prefs.remove(keyAdmin);
-  }
   //Onboarding
-  Future<bool?> getLoging() async {
-    SharedPreferences prefs = await _prefs;
-    return prefs.getBool(keyLoging);
-  }
-
-  Future<void> setLoging(bool login) async {
-    SharedPreferences prefs = await _prefs;
-    await prefs.setBool(keyLoging, login);
-  }
-  //Onboarding
-  Future<bool?>   getOnboarding() async {
+  Future<bool?> getOnboarding() async {
     SharedPreferences prefs = await _prefs;
     return prefs.getBool(keyOnboarding);
   }
