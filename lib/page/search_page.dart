@@ -4,6 +4,7 @@ import 'package:nectar/components/app_search_box.dart';
 import 'package:nectar/components/app_tab_bar.dart';
 import 'package:nectar/models/fruit_model.dart';
 import 'package:nectar/page/fruit_detail.dart';
+import 'package:nectar/themes/colors.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -33,11 +34,12 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppTabBar(text: 'Search Fruit'),
+      backgroundColor: AppColor.white,
+      appBar: const AppTabBar(text: 'Search Fruit' , color: AppColor.white,),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(
-              top: MediaQuery.of(context).padding.top + 20, bottom: 30),
+          padding:const EdgeInsets.only(
+              top: 10, bottom: 30),
           child: Column(
             children: [
               Padding(

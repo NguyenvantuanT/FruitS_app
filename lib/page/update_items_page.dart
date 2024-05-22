@@ -59,7 +59,7 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 8),
             child: AppSearchBox(
               controller: searchController,
               onchange: _search,
@@ -93,7 +93,7 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
   Divider _divider() {
     return const Divider(
       height: 1.2,
-      color: Colors.grey,
+      color: AppColor.grey,
     );
   }
 
@@ -101,6 +101,7 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
+              backgroundColor: AppColor.white,
               title: const Text('😒'),
               content: const SingleChildScrollView(
                 child: ListBody(children: [
@@ -112,10 +113,10 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
               actions: [
                 TextButton(
                     onPressed: () {
-                      fruits
-                          .removeWhere((element) => element.id == fruit.id);
-                      listSearch
-                          .removeWhere((element) => element.id == fruit.id);
+                      fruits.removeWhere((element) => element.id == fruit.id);
+                      listSearch.removeWhere((element) => element.id == fruit.id);
+                      cartFruits.removeWhere((element) => element.id == fruit.id);
+                      favourites.removeWhere((element) => element.id == fruit.id);
                       prefs.saveFruitList(fruits);
                       setState(() {});
                       Navigator.pop(context);
@@ -138,7 +139,7 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              backgroundColor: Colors.white,
+              backgroundColor: AppColor.white,
               title: const Text("Update Item"),
               content: SingleChildScrollView(
                 child: ListBody(
@@ -169,9 +170,11 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
                         TextButton(
                             onPressed: () {
                               fruit.name = newNameController.text.trim();
-                              fruit.price =double.parse(newPriceController.text);
+                              fruit.price =
+                                  double.parse(newPriceController.text);
                               fruit.fs = newfsController.text.trim();
-                              fruit.description = newDescriptionController.text.trim();
+                              fruit.description =
+                                  newDescriptionController.text.trim();
 
                               _updateFavorites(fruit);
                               _updateCartFruits(fruit);
@@ -209,24 +212,18 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
   }
 
   void _updateCartFruits(FruitModel fruit) {
-    if (cartFruits
-        .any((element) => element.id == fruit.id)) {
-      cartFruits.removeWhere(
-          (element) => element.id == fruit.id);
-      if (fruit.isCart == true) {
-        cartFruits.add(fruit);
-      }
+    if (fruit.isCart) {
+      cartFruits.removeWhere((element) => element.id == fruit.id);
+      cartFruits.add(fruit);
+      return;
     }
   }
 
   void _updateFavorites(FruitModel fruit) {
-    if (favourites
-        .any((element) => element.id == fruit.id)) {
-      favourites.removeWhere(
-          (element) => element.id == fruit.id);
-      if (fruit.isFavourite == true) {
-        favourites.add(fruit);
-      }
+    if (fruit.isFavourite) {
+      favourites.removeWhere((element) => element.id == fruit.id);
+      favourites.add(fruit);
+      return;
     }
   }
 }

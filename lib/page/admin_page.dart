@@ -26,6 +26,7 @@ class _AdminPageState extends State<AdminPage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: AppColor.white,
           fixedColor: AppColor.green,
           type: BottomNavigationBarType.fixed,
           currentIndex: selectIndex,

@@ -61,8 +61,10 @@ class _CartPageState extends State<CartPage> {
                           ? null
                           : setState(
                               () => cart.quantity = (cart.quantity ?? 0) - 1),
-                      onDelete: () => setState(() => cartFruits
-                          .removeWhere((element) => element.id == cart.id)),
+                      onDelete: () => setState(() {
+                        cart.isCart = !cart.isCart ;
+                        cartFruits.removeWhere((element) => element.id == cart.id);
+                      }),
                     );
                   }),
             ),

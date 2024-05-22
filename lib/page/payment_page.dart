@@ -4,14 +4,9 @@ import 'package:nectar/components/app_tab_bar.dart';
 import 'package:nectar/page/choose_address_page.dart';
 import 'package:nectar/page/payment_method_page.dart';
 
-class PaymentPage extends StatefulWidget {
+class PaymentPage extends StatelessWidget {
   const PaymentPage({super.key});
 
-  @override
-  State<PaymentPage> createState() => _PaymentPageState();
-}
-
-class _PaymentPageState extends State<PaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

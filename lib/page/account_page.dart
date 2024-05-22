@@ -42,7 +42,7 @@ class _AccountPageState extends State<AccountPage> {
     prefs.saveAuthList(persons);
     setState(() {});
     Route route = MaterialPageRoute(builder: (context) => const LoginPage());
-    Navigator.push(context, route);
+     Navigator.pushAndRemoveUntil(context, route, (route) => false);
   }
 
   @override

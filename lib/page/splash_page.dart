@@ -41,7 +41,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void _checkLoginState() async {
-    isOnboarding = await prefs.getOnboarding() ?? false;
+    isOnboarding = await prefs.getOnboarding() ?? true;
 
     final isLoging = persons.any((element) => element.isLogin == true);
     final isAdmin = persons.any((element) => element.isAdmin == true && element.isLogin == true);
