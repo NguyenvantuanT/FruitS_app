@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class FruitModel {
   int? id;
   String? name;
@@ -118,3 +120,35 @@ List<FruitModel> fruits = [
     ..img = "assets/images/food_3.png"
     ..quantity = 0,
 ];
+
+String displayCartReceipt() {
+  double total = 0.0;
+  final recipt = StringBuffer();
+  recipt.writeln('Đây là hóa đơn chi tiết của bạn.');
+  recipt.writeln();
+  String formattedDate = DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
+  recipt.writeln(formattedDate);
+  recipt.writeln();
+  recipt.writeln('------------');
+  for(FruitModel cart in cartFruits){
+    recipt.writeln(
+            '${cart.quantity} x ${cart.name} x ${_formatPrice(cart.price)}');
+        total += cart.total;
+    total += cart.total;
+  }
+  recipt.writeln();
+  recipt.writeln('------------');
+  recipt.writeln('Tổng giá: ${_formatTotal(total)}');
+  
+
+
+  return recipt.toString();
+}
+
+String _formatPrice(double? price) {
+  return '\$ ${(price ?? 0.0).toStringAsFixed(2)}';
+}
+
+String _formatTotal(double total) {
+  return '\$ ${total.toStringAsFixed(2)}';
+}

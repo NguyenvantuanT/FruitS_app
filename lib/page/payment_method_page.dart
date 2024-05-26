@@ -3,6 +3,7 @@ import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_payment_method_box.dart';
 import 'package:nectar/components/app_tab_bar.dart';
 import 'package:nectar/models/address_model.dart';
+import 'package:nectar/page/payment_page.dart';
 import 'package:nectar/themes/colors.dart';
 
 class PaymentMethodPage extends StatefulWidget {
@@ -42,9 +43,10 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0)
                 .copyWith(bottom: 40),
-            child:const AppButton(
+            child: AppButton(
               text: 'Next',
               bgColor: AppColor.green,
+              onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context) =>const PaymentPage())),
             ),
           )
         ],

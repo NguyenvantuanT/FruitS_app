@@ -15,24 +15,24 @@ class _FruitDetailState extends State<FruitDetail> {
 
   @override
   Widget build(BuildContext context) {
-    final Fruit = widget.fruit;
+    final sruit = widget.fruit;
 
     void addToFavourite() {
-      setState(() {
-        Fruit.isFavourite = !Fruit.isFavourite;
-        if (Fruit.isFavourite) {
-          favourites.add(Fruit);
+     
+        sruit.isFavourite = !sruit.isFavourite;
+        if (sruit.isFavourite) {
+          favourites.add(sruit);
         } else {
-          favourites.removeWhere((element) => element.id == Fruit.id);
+          favourites.removeWhere((element) => element.id == sruit.id);
         }
-      });
+       setState(() {});
     }
 
     void addToCart() {
       setState(() {
-        Fruit.isCart = !Fruit.isCart;
-        if (Fruit.isCart) {
-          cartFruits.add(Fruit);
+        sruit.isCart = !sruit.isCart;
+        if (sruit.isCart) {
+          cartFruits.add(sruit);
           Navigator.pop(context);
         }
       });
@@ -41,17 +41,17 @@ class _FruitDetailState extends State<FruitDetail> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: AppFruitDetail(
-          fruit: Fruit,
+          fruit: sruit,
           onAdd: () {
             setState(
-              () => Fruit.quantity = (Fruit.quantity ?? 0) + 1,
+              () => sruit.quantity = (sruit.quantity ?? 0) + 1,
             );
           },
           onRemove: () {
-            Fruit.quantity == 1
+            sruit.quantity == 1
                 ? null
                 : setState(
-                    () => Fruit.quantity = (Fruit.quantity ?? 0) - 1,
+                    () => sruit.quantity = (sruit.quantity ?? 0) - 1,
                   );
           },
           onfavorite: addToFavourite,

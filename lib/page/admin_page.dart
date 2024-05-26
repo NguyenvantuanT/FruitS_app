@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nectar/page/account_page.dart';
 import 'package:nectar/page/add_item_page.dart';
+import 'package:nectar/page/receipt_view_page.dart';
 import 'package:nectar/page/update_items_page.dart';
 import 'package:nectar/themes/colors.dart';
 
@@ -22,6 +23,7 @@ class _AdminPageState extends State<AdminPage> {
         children: const [
           AddItemPage(),
           UpdateItemsPage(),
+          ReceiptViewPage(),
           AccountPage(),
         ],
       ),
@@ -44,6 +46,10 @@ class _AdminPageState extends State<AdminPage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart_outlined),
               label: "Update Item",
+            ),
+             BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+              label: "Receipt",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.account_circle_outlined),

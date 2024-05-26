@@ -9,8 +9,17 @@ class SharedPrefs {
   final String keyFruit = 'keyFruit';
   final String keyAuth = 'keyAuth';
   final String keyOnboarding = 'keyOnboarding';
-  final String keyLoging = 'keyLoging';
-  final String keyAdmin = 'keyAdmin';
+
+//avata
+  Future<String?> getAvata() async {
+    SharedPreferences prefs = await _prefs;
+    return prefs.getString('keyAvata');
+  }
+
+  Future<void> setAvata(String path) async {
+    SharedPreferences prefs = await _prefs;
+    prefs.setString('keyAvata', path);
+  }
 
   //Onboarding
   Future<bool?> getOnboarding() async {
@@ -31,7 +40,6 @@ class SharedPrefs {
     List<Map<String, dynamic>> maps = jsonDecode(data)
         .cast<Map<String, dynamic>>() as List<Map<String, dynamic>>;
 
-
     return maps.map((e) => FruitModel.fromJson(e)).toList();
   }
 
@@ -48,7 +56,6 @@ class SharedPrefs {
     if (data == null) return null;
     List<Map<String, dynamic>> maps = jsonDecode(data)
         .cast<Map<String, dynamic>>() as List<Map<String, dynamic>>;
-
 
     return maps.map((e) => AuthModel.fromJson(e)).toList();
   }

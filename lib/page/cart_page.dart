@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_cart_detal.dart';
 import 'package:nectar/components/app_text_stytle.dart';
+import 'package:nectar/models/bill_model.dart';
 import 'package:nectar/models/fruit_model.dart';
 import 'package:nectar/page/payment_page.dart';
 import 'package:nectar/themes/colors.dart';
@@ -62,8 +63,9 @@ class _CartPageState extends State<CartPage> {
                           : setState(
                               () => cart.quantity = (cart.quantity ?? 0) - 1),
                       onDelete: () => setState(() {
-                        cart.isCart = !cart.isCart ;
-                        cartFruits.removeWhere((element) => element.id == cart.id);
+                        cart.isCart = !cart.isCart;
+                        cartFruits
+                            .removeWhere((element) => element.id == cart.id);
                       }),
                     );
                   }),
@@ -89,6 +91,11 @@ class _CartPageState extends State<CartPage> {
         text: "Go To Checkout",
         bgColor: AppColor.green,
         onTap: () {
+          InvoiceModel receipt = InvoiceModel(
+            id: cartFruits.length.toString(),
+            receipts: List.from(cartFruits),
+          );
+          setState(() => invoices.add(receipt));
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const PaymentPage()),
