@@ -40,15 +40,15 @@ class _AdminPageState extends State<AdminPage> {
           },
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
+              icon: Icon(Icons.add),
               label: "New Item",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_outlined),
+              icon: Icon(Icons.update),
               label: "Update Item",
             ),
              BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
+              icon: Icon(Icons.receipt),
               label: "Receipt",
             ),
             BottomNavigationBarItem(

@@ -63,11 +63,11 @@ class _PaymentPageState extends State<PaymentPage> {
             text: 'Pay',
             bgColor: AppColor.green,
             onTap: () {
-              final invoice = invoices.firstWhere((element) => element.isPaid == false);
               if (cartFruits.isNotEmpty) {
+              final invoice = invoices.firstWhere((element) => element.isPaid == false);
                 invoice.isPaid = true;
                 setState(() => cartFruits.clear());
-                Route route = MaterialPageRoute(
+                Route route = MaterialPageRoute(  
                     builder: (context) => const OrderAcceptedPage());
                 Navigator.push(context, route);
                 return;

@@ -23,7 +23,7 @@ class InvoiceModel {
     receipt.writeln();
     receipt.writeln('------------');
     if (receipts != null) {
-      for (FruitModel rec in receipts!) {
+      for (FruitModel rec in receipts ?? []) {
         receipt.writeln(
             '${rec.quantity} x ${rec.name} x ${_formatPrice(rec.price)}');
         total += rec.total;
