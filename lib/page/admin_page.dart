@@ -19,6 +19,7 @@ class _AdminPageState extends State<AdminPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
+        physics:  const NeverScrollableScrollPhysics(),
         controller: _pageController,
         children: const [
           AddItemPage(),

@@ -40,9 +40,7 @@ class _AccountPageState extends State<AccountPage> {
   }
 
   AuthModel? _loadCurrentUser() {
-    final user = persons.firstWhere((element) => element.isLogin == true,
-        orElse: () => AuthModel());
-    return user.isLogin == true ? user : null;
+    return persons.firstWhere((element) => element.isLogin == true, orElse: () => AuthModel());
   }
 
   @override
@@ -180,9 +178,8 @@ class _AccountPageState extends State<AccountPage> {
   }
 
   void _logoutUser() {
-    final currentUser = _loadCurrentUser();
-    if (currentUser != null) {
-      currentUser.isLogin = false;
+    for (var person in persons) {
+        person.isLogin = false;
     }
     prefs.saveAuthList(persons);
     setState(() {});

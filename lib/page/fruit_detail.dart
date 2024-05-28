@@ -48,7 +48,7 @@ class _FruitDetailState extends State<FruitDetail> {
             );
           },
           onRemove: () {
-            sruit.quantity == 1
+            sruit.quantity == 0
                 ? null
                 : setState(
                     () => sruit.quantity = (sruit.quantity ?? 0) - 1,

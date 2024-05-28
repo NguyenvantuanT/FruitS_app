@@ -20,6 +20,7 @@ class _RootPageState extends State<RootPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
+        physics:const NeverScrollableScrollPhysics(),
         controller: _pageController,
         children: const [
           HomePage(),

@@ -58,7 +58,7 @@ class _CartPageState extends State<CartPage> {
                       cartFruits: cart,
                       onAdd: () => setState(
                           () => cart.quantity = (cart.quantity ?? 0) + 1),
-                      onRemove: () => cart.quantity == 1
+                      onRemove: () => cart.quantity == 0
                           ? null
                           : setState(
                               () => cart.quantity = (cart.quantity ?? 0) - 1),

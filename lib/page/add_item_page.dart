@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_tab_bar.dart';
-import 'package:nectar/components/app_text_filder.dart';
+import 'package:nectar/components/app_text_form_field.dart';
 import 'package:nectar/components/app_text_stytle.dart';
 import 'package:nectar/models/fruit_model.dart';
 import 'package:nectar/services/local/shared_prefs.dart';
@@ -76,17 +76,17 @@ class _AddItemPageState extends State<AddItemPage> {
               ),
               const SizedBox(height: 15),
               const AppTextStyle(text: "Add new fruit"),
-              AppTextField2(
+              AppTextFormField(
                 controller: nameController,
                 labelText: 'Name',
                 textInputAction: TextInputAction.next,
               ),
-              AppTextField2(
+              AppTextFormField(
                 controller: priceController,
                 labelText: 'Price',
                 textInputAction: TextInputAction.next,
               ),
-              AppTextField2(
+              AppTextFormField(
                 controller: descriptionController,
                 labelText: 'Description',
                 textInputAction: TextInputAction.done,

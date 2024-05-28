@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nectar/components/app_edit_fruit.dart';
 import 'package:nectar/components/app_search_box.dart';
 import 'package:nectar/components/app_tab_bar.dart';
-import 'package:nectar/components/app_text_filder.dart';
+import 'package:nectar/components/app_text_form_field.dart';
 import 'package:nectar/components/app_text_stytle.dart';
 import 'package:nectar/models/fruit_model.dart';
 import 'package:nectar/services/local/shared_prefs.dart';
@@ -144,22 +144,22 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
               content: SingleChildScrollView(
                 child: ListBody(
                   children: [
-                    AppTextField2(
+                    AppTextFormField(
                       controller: newNameController,
                       labelText: 'Name',
                       textInputAction: TextInputAction.next,
                     ),
-                    AppTextField2(
+                    AppTextFormField(
                       controller: newPriceController,
                       labelText: 'Price',
                       textInputAction: TextInputAction.next,
                     ),
-                    AppTextField2(
+                    AppTextFormField(
                       controller: newDescriptionController,
                       labelText: 'Description',
                       textInputAction: TextInputAction.done,
                     ),
-                    AppTextField2(
+                    AppTextFormField(
                       controller: newfsController,
                       labelText: 'fs',
                       textInputAction: TextInputAction.done,

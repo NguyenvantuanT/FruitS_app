@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_choose_address_box.dart';
 import 'package:nectar/components/app_tab_bar.dart';
-import 'package:nectar/components/app_text_filder.dart';
+import 'package:nectar/components/app_text_form_field.dart';
 import 'package:nectar/models/address_model.dart';
 import 'package:nectar/page/payment_method_page.dart';
 import 'package:nectar/themes/colors.dart';
@@ -85,17 +85,17 @@ class _ChooseAddressPageState extends State<ChooseAddressPage> {
               content: SingleChildScrollView(
                 child: ListBody(
                   children: [
-                    AppTextField2(
+                    AppTextFormField(
                       controller: addressController,
                       hintText: 'Address',
                       textInputAction: TextInputAction.next,
                     ),
-                    AppTextField2(
+                    AppTextFormField(
                       controller: nameController,
                       hintText: 'Name',
                       textInputAction: TextInputAction.next,
                     ),
-                    AppTextField2(
+                    AppTextFormField(
                       controller: localController,
                       hintText: 'Local',
                       textInputAction: TextInputAction.next,

@@ -23,6 +23,7 @@ class _ReceiptViewPageState extends State<ReceiptViewPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const Divider(),
             ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 30).copyWith( top: 10,bottom: 20),
               physics: const NeverScrollableScrollPhysics(),

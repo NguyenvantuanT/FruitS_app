@@ -35,8 +35,8 @@ class AuthModel {
 
 List<AuthModel> persons = [
   AuthModel()
-    ..name = "Tuan"
-    ..email = "tuan@gmail.com"
+    ..name = "Tuan1"
+    ..email = "tuan1@gmail.com"
     ..pass = "123"
     ..isAdmin = true,
   AuthModel()

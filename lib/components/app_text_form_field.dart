@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class AppTextField2 extends StatelessWidget {
-  const AppTextField2({
+class AppTextFormField  extends StatelessWidget {
+  const AppTextFormField ({
     super.key,
     this.controller,
     this.hintText,
     this.textInputAction,
     this.obscureText = false,
     this.icon,
-    this.labelText,
+    this.labelText,this.validator,
   });
 
   final TextEditingController? controller;
@@ -17,12 +17,14 @@ class AppTextField2 extends StatelessWidget {
   final TextInputAction? textInputAction;
   final bool obscureText;
   final Widget? icon;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextField(
+        TextFormField(
+          validator: validator,
           obscureText: obscureText,
           controller: controller,
           decoration: InputDecoration(
