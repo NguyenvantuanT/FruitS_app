@@ -40,7 +40,8 @@ class _AccountPageState extends State<AccountPage> {
   }
 
   AuthModel? _loadCurrentUser() {
-    return persons.firstWhere((element) => element.isLogin == true, orElse: () => AuthModel());
+    return persons.firstWhere((element) => element.isLogin == true,
+        orElse: () => AuthModel());
   }
 
   @override
@@ -59,24 +60,23 @@ class _AccountPageState extends State<AccountPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0)
                 .copyWith(top: 10, bottom: 10),
-            child: Row(
-              children: [
-                const Icon(Icons.password_outlined),
-                const SizedBox(width: 20),
-                const AppTextStyle(
-                  text: "Change Password",
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-                const Spacer(),
-                IconButton(
-                  onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ChangePasswordPage())),
-                  icon: const Icon(Icons.chevron_right),
-                ),
-              ],
+            child: GestureDetector(
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ChangePasswordPage())),
+              child: const Row(
+                children: [
+                  Icon(Icons.password_outlined),
+                  SizedBox(width: 20),
+                  AppTextStyle(
+                    text: "Change Password",
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  Spacer(),
+                  Icon(Icons.chevron_right)
+                ],
+              ),
             ),
           ),
           const Divider(color: Colors.black26, thickness: 1.2),
@@ -170,8 +170,9 @@ class _AccountPageState extends State<AccountPage> {
   }
 
   Future pickedImage() async {
-    final pickedImage  = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (pickedImage  == null) return;
+    final pickedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedImage == null) return;
     final imageTemporary = File(pickedImage.path);
     prefs.setAvata(imageTemporary.path);
     setState(() => image = imageTemporary);
@@ -179,7 +180,7 @@ class _AccountPageState extends State<AccountPage> {
 
   void _logoutUser() {
     for (var person in persons) {
-        person.isLogin = false;
+      person.isLogin = false;
     }
     prefs.saveAuthList(persons);
     setState(() {});

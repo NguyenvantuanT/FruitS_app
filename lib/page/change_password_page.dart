@@ -63,8 +63,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               person.pass = newPassword;
               prefs.saveAuthList(persons);
               setState(() {});
-              Route route = MaterialPageRoute(
-                  builder: (context) => LoginPage(email: person.email));
+              Route route = MaterialPageRoute(builder: (context) => LoginPage(email: person.email));
               Navigator.pushAndRemoveUntil(context, route, (route) => false);
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
