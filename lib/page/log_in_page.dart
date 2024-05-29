@@ -51,7 +51,6 @@ class _LoginPageState extends State<LoginPage> {
         if (person.email == email && person.pass == pass) {
           userFound = true;
           bool admin = person.isAdmin ?? false;
-          print(person);
           setState(() {
             person.isLogin = true;
           });

@@ -3,6 +3,7 @@ import 'package:nectar/components/app_button.dart';
 import 'package:nectar/components/app_text_form_field.dart';
 import 'package:nectar/components/app_text_stytle.dart';
 import 'package:nectar/models/auth_model.dart';
+import 'package:nectar/page/log_in_page.dart';
 import 'package:nectar/services/local/shared_prefs.dart';
 import 'package:nectar/themes/colors.dart';
 
@@ -58,8 +59,13 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         if (newPassword == confirmPassword) {
           newPasswordMatch = true;
           for (var person in persons) {
-            if (person.pass == currentPassword) {
+            if (person.pass == currentPassword && person.isLogin == true) {
               person.pass = newPassword;
+              prefs.saveAuthList(persons);
+              setState(() {});
+              Route route = MaterialPageRoute(
+                  builder: (context) => LoginPage(email: person.email));
+              Navigator.pushAndRemoveUntil(context, route, (route) => false);
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   content: Text('Đã thay đổi mật khẩu thành công'),

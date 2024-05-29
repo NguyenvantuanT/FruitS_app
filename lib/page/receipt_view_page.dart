@@ -23,12 +23,16 @@ class _ReceiptViewPageState extends State<ReceiptViewPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const Divider(),
+            const Divider(
+              color: Colors.grey,
+              height: 1.2,
+            ),
             ListView.separated(
-              padding: const EdgeInsets.symmetric(horizontal: 30).copyWith( top: 10,bottom: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 30)
+                  .copyWith(top: 10, bottom: 20),
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              separatorBuilder: (_,__) =>
+              separatorBuilder: (_, __) =>
                   const Padding(padding: EdgeInsets.all(10)),
               itemCount: invoices.length,
               itemBuilder: (context, index) {
@@ -38,7 +42,8 @@ class _ReceiptViewPageState extends State<ReceiptViewPage> {
                     decoration: BoxDecoration(
                         color: AppColor.white,
                         border: Border.all(color: AppColor.grey),
-                        borderRadius: const BorderRadius.all(Radius.circular(8)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8)),
                         boxShadow: const [
                           BoxShadow(
                               color: Colors.black26,
@@ -48,13 +53,16 @@ class _ReceiptViewPageState extends State<ReceiptViewPage> {
                     child: Column(
                       children: [
                         GestureDetector(
-                          onTap: () {
-                            invoice.isPaid ? null: setState(() {
-                              invoices.removeWhere((element) => element.id == invoice.id);
-                              cartFruits.clear();
-                            });
-                          },
-                          behavior: HitTestBehavior.translucent,
+                            onTap: () {
+                              invoice.isPaid
+                                  ? null
+                                  : setState(() {
+                                      invoices.removeWhere((element) =>
+                                          element.id == invoice.id);
+                                      cartFruits.clear();
+                                    });
+                            },
+                            behavior: HitTestBehavior.translucent,
                             child: const Padding(
                                 padding: EdgeInsets.all(10),
                                 child: Icon(Icons.delete))),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nectar/page/admin_page.dart';
-import 'package:nectar/page/receipt_view_page.dart';
 import 'package:nectar/page/splash_page.dart';
 
 void main() async {
@@ -20,7 +18,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AdminPage(),
+      home: SplashPage(),
     );
   }
 }
