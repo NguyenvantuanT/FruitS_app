@@ -34,8 +34,7 @@ class _SignUpPageState extends State<SignUpPage> {
       persons.add(newUser);
       prefs.saveAuthList(persons);
       setState(() {});
-      Route newRoute = MaterialPageRoute(
-          builder: (context) => LoginPage(email: emailController.text));
+      Route newRoute = MaterialPageRoute(builder: (context) => LoginPage(email: emailController.text));
       Navigator.pushAndRemoveUntil(context, newRoute, (route) => false);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -189,6 +188,11 @@ class _SignUpPageState extends State<SignUpPage> {
     final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
     if (!emailRegex.hasMatch(value)) {
       return 'Vui lòng nhập địa chỉ email hợp lệ';
+    }
+    for (var person in persons) {
+      if (value == person.email) {
+        return 'Email này đã được sử dụng';
+      }
     }
     return null;
   }

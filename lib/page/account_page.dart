@@ -170,8 +170,7 @@ class _AccountPageState extends State<AccountPage> {
   }
 
   Future pickedImage() async {
-    final pickedImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedImage == null) return;
     final imageTemporary = File(pickedImage.path);
     prefs.setAvata(imageTemporary.path);

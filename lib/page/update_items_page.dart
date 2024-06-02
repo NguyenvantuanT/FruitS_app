@@ -170,8 +170,7 @@ class _UpdateItemsPageState extends State<UpdateItemsPage> {
                         TextButton(
                             onPressed: () {
                               fruit.name = newNameController.text.trim();
-                              fruit.price =
-                                  double.parse(newPriceController.text);
+                              fruit.price = double.parse(newPriceController.text);
                               fruit.fs = newfsController.text.trim();
                               fruit.description =
                                   newDescriptionController.text.trim();

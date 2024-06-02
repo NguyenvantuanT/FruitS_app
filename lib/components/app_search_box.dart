@@ -27,7 +27,7 @@ class AppSearchBox extends StatelessWidget {
             hintText: "Search Store",
             hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
             prefixIcon: Icon(Icons.search, color: Colors.red),
-            contentPadding: EdgeInsets.symmetric(vertical: 17.0)),            
+            contentPadding: EdgeInsets.symmetric(vertical: 13.0)),            
       ),
     );
   }

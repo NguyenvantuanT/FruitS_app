@@ -37,8 +37,7 @@ class _AddItemPageState extends State<AddItemPage> {
   }
 
   void addNewFruit() async {
-    final XFile? pickedImage =
-        await _picker.pickImage(source: ImageSource.gallery);
+    final XFile? pickedImage = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       FruitModel newFruit = FruitModel(
         id: fruits.length + 1,

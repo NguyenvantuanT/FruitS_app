@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefs {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  
   final String keyFruit = 'keyFruit';
   final String keyAuth = 'keyAuth';
   final String keyOnboarding = 'keyOnboarding';
